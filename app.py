@@ -419,7 +419,10 @@ elif page == "Card Analysis":
         selected_combo = st.selectbox("Color combination", color_combos)
     with f2:
         event_types = sorted({d["event_type"] for d in raw if d["event_type"]})
-        selected_event_types = st.multiselect("Event type", event_types, default=event_types)
+        selected_event_types = st.multiselect(
+            "Event type", event_types,
+            default=[t for t in event_types if t == "Large Official Event"],
+        )
     with f3:
         sort_by = st.selectbox("Sort by", ["Weighted Score", "Appearance %", "Decks", "Avg Copies"])
     with f4:
