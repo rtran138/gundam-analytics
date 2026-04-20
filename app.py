@@ -425,6 +425,10 @@ elif page == "Card Stats":
 
     df_display = df.sort_values(sort_by, ascending=False).head(top_n).reset_index(drop=True)
     df_display["Label"] = df_display["Card ID"].apply(lambda cid: short_name(cid, card_names))
+    dup_mask = df_display["Label"].duplicated(keep=False)
+    df_display.loc[dup_mask, "Label"] = (
+        df_display.loc[dup_mask, "Label"] + " (" + df_display.loc[dup_mask, "Card ID"] + ")"
+    )
     df_display.index += 1
 
     col_chart, col_table = st.columns([1.4, 1])
@@ -463,11 +467,18 @@ elif page == "Card Stats":
     top20_ids = df.head(20)["Card ID"].tolist()
 
     heatmap_rows = []
+    seen_hm_labels: dict[str, int] = {}
     for cid in top20_ids:
         if cid not in cards_data:
             continue
-        row = {"Label": short_name(cid, card_names)}
+        base = short_name(cid, card_names)
+        if base in seen_hm_labels:
+            label = f"{base} ({cid})"
+        else:
+            label = base
+        seen_hm_labels[base] = seen_hm_labels.get(base, 0) + 1
         bp = cards_data[cid]["by_placement"]
+        row = {"Label": label}
         for p in placements:
             row[p] = bp.get(p, {}).get("decks", 0)
         heatmap_rows.append(row)
