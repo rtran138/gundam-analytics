@@ -398,6 +398,40 @@ elif page == "Card Stats":
         value=False,
     )
 
+    # Card exclusion list
+    EXCLUSIONS_FILE = Path("assets/card_exclusions.json")
+    if "excluded_card_ids" not in st.session_state:
+        if EXCLUSIONS_FILE.exists():
+            st.session_state["excluded_card_ids"] = json.loads(EXCLUSIONS_FILE.read_text(encoding="utf-8"))
+        else:
+            st.session_state["excluded_card_ids"] = []
+
+    with st.expander("Exclude specific cards from charts"):
+        all_card_options = sorted(
+            {cid: card_names.get(cid, {}).get("name", cid) for cid in cards_data}.items(),
+            key=lambda x: x[1],
+        )
+        excluded = st.multiselect(
+            "Cards to hide",
+            options=[cid for cid, _ in all_card_options],
+            format_func=lambda cid: f"{card_names.get(cid, {}).get('name', cid)} ({cid})",
+            default=st.session_state["excluded_card_ids"],
+            key="excluded_card_ids_widget",
+        )
+        c_save, c_clear = st.columns(2)
+        with c_save:
+            if st.button("Save exclusions", use_container_width=True):
+                st.session_state["excluded_card_ids"] = excluded
+                EXCLUSIONS_FILE.write_text(json.dumps(excluded, indent=2), encoding="utf-8")
+                st.success("Saved.")
+        with c_clear:
+            if st.button("Clear all", use_container_width=True):
+                st.session_state["excluded_card_ids"] = []
+                EXCLUSIONS_FILE.write_text("[]", encoding="utf-8")
+                st.rerun()
+
+    excluded_ids = set(st.session_state["excluded_card_ids"])
+
     # Re-compute if event filter is active
     if set(selected_events) != set(event_types):
         filtered_raw = [d for d in raw if d["event_type"] in selected_events]
@@ -428,7 +462,9 @@ elif page == "Card Stats":
     else:
         df = cards_df()
 
-    filtered_df = df[df["Avg Copies"] < 3.5] if hide_staples else df
+    filtered_df = df[~df["Card ID"].isin(excluded_ids)]
+    if hide_staples:
+        filtered_df = filtered_df[filtered_df["Avg Copies"] < 3.5]
     df_display = filtered_df.sort_values(sort_by, ascending=False).head(top_n).reset_index(drop=True)
     df_display["Label"] = df_display["Card ID"].apply(lambda cid: short_name(cid, card_names))
     dup_mask = df_display["Label"].duplicated(keep=False)
