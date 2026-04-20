@@ -116,12 +116,15 @@ def load_data():
 
 
 def refresh_data():
-    with st.spinner("Scraping latest deck lists..."):
-        subprocess.run([sys.executable, "scraper.py"], check=True)
-    with st.spinner("Analyzing data..."):
-        subprocess.run([sys.executable, "analyzer.py"], check=True)
-    st.cache_data.clear()
-    st.rerun()
+    try:
+        with st.spinner("Scraping latest deck lists..."):
+            subprocess.run([sys.executable, "scraper.py"], check=True)
+        with st.spinner("Analyzing data..."):
+            subprocess.run([sys.executable, "analyzer.py"], check=True)
+        st.cache_data.clear()
+        st.rerun()
+    except Exception as e:
+        st.error(f"Refresh not available in this environment: {e}")
 
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
