@@ -246,7 +246,7 @@ if page == "Meta Overview":
     fig2.add_trace(go.Bar(
         x=top15["archetype"],
         y=top15["Top Finishes"],
-        name="Top-3 Finishes",
+        name="Top-4 Finishes",
         marker_color="gold",
     ))
     fig2.update_layout(
@@ -261,7 +261,7 @@ if page == "Meta Overview":
     st.divider()
     st.subheader("Archetype Table")
     display_arch = arch_df[["archetype", "deck_count", "Meta %", "top_finishes"]].rename(
-        columns={"archetype": "Archetype", "deck_count": "Decks", "top_finishes": "Top-3 Finishes"}
+        columns={"archetype": "Archetype", "deck_count": "Decks", "top_finishes": "Top-4 Finishes"}
     )
     st.dataframe(display_arch, use_container_width=True, hide_index=True)
 
@@ -331,7 +331,7 @@ if page == "Meta Overview":
             combo_stats[combo] = {"decks": 0, "top_finishes": 0, "weighted_score": 0}
         combo_stats[combo]["decks"] += 1
         placing = deck.get("placing_clean") or deck.get("placing", "")
-        if placing in ("1st", "2nd", "3rd"):
+        if placing in ("1st", "2nd", "3rd", "4th", "Top 4"):
             combo_stats[combo]["top_finishes"] += 1
         combo_stats[combo]["weighted_score"] += PLACEMENT_POINTS.get(placing, 0)
 
@@ -341,7 +341,7 @@ if page == "Meta Overview":
                 "Color Combo":    combo,
                 "Decks":          v["decks"],
                 "Meta %":         round(v["decks"] / meta["total_decks"] * 100, 1),
-                "Top-3 Finishes": v["top_finishes"],
+                "Top-4 Finishes": v["top_finishes"],
                 "Weighted Score": v["weighted_score"],
             }
             for combo, v in combo_stats.items()
@@ -381,8 +381,8 @@ if page == "Meta Overview":
         ))
         fig_cc2.add_trace(go.Bar(
             x=combo_df["Color Combo"],
-            y=combo_df["Top-3 Finishes"],
-            name="Top-3 Finishes",
+            y=combo_df["Top-4 Finishes"],
+            name="Top-4 Finishes",
             marker_color="gold",
         ))
         fig_cc2.update_layout(
@@ -508,14 +508,14 @@ elif page == "Card Analysis":
 
     # ── Metrics (only when a combo is selected) ───────────────────────────────
     if selected_combo != "All":
-        top3 = sum(1 for d in scoped_decks if (d.get("placing_clean") or d.get("placing", "")) in ("1st", "2nd", "3rd"))
+        top4 = sum(1 for d in scoped_decks if (d.get("placing_clean") or d.get("placing", "")) in ("1st", "2nd", "3rd", "4th", "Top 4"))
         meta_share = total_decks / meta["total_decks"] * 100 if meta["total_decks"] else 0
-        conv = top3 / total_decks * 100 if total_decks else 0
+        conv = top4 / total_decks * 100 if total_decks else 0
         m1, m2, m3, m4 = st.columns(4)
         m1.metric("Total Decks", total_decks)
         m2.metric("Meta Share", f"{meta_share:.1f}%")
-        m3.metric("Top-3 Finishes", top3)
-        m4.metric("Top-3 Rate", f"{conv:.1f}%")
+        m3.metric("Top-4 Finishes", top4)
+        m4.metric("Top-4 Rate", f"{conv:.1f}%")
 
     st.divider()
 

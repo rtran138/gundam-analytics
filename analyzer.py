@@ -168,7 +168,7 @@ def analyze(decks: list[dict]) -> dict:
             "deck_count":  count,
             "meta_share":  round(count / total, 4),
             "placements":  dict(placement_counter),
-            "top_finishes": placement_counter.get("1st", 0) + placement_counter.get("2nd", 0) + placement_counter.get("3rd", 0),
+            "top_finishes": placement_counter.get("1st", 0) + placement_counter.get("2nd", 0) + placement_counter.get("3rd", 0) + placement_counter.get("Top 4", 0),
         }
 
     # ── Placement distribution ────────────────────────────────────────────────
