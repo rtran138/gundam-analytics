@@ -2,9 +2,9 @@
   "meta": {
     "total_decks": 401,
     "total_events": 45,
-    "cards_tracked": 272,
+    "cards_tracked": 264,
     "archetypes_tracked": 43,
-    "last_updated": "2026-04-19T21:47:00",
+    "last_updated": "2026-04-20T00:49:42",
     "placement_distribution": {
       "1st": 191,
       "2nd": 23,
@@ -740,10 +740,10 @@
     },
     "ST01-014": {
       "card_id": "ST01-014",
-      "deck_count": 64,
-      "appearance_rate": 0.1596,
-      "avg_copies_in_deck": 1.41,
-      "weighted_score": 357,
+      "deck_count": 65,
+      "appearance_rate": 0.1621,
+      "avg_copies_in_deck": 1.4,
+      "weighted_score": 360,
       "by_placement": {
         "1st": {
           "decks": 34,
@@ -762,7 +762,7 @@
           "avg_copies": 1.29
         },
         "Top 8": {
-          "decks": 5,
+          "decks": 6,
           "avg_copies": 1.0
         },
         "Top 16": {
@@ -776,8 +776,8 @@
           "appearance_rate": 0.1047
         },
         "Large Official Event": {
-          "decks": 13,
-          "appearance_rate": 0.0324
+          "decks": 14,
+          "appearance_rate": 0.0349
         },
         "Unofficial Event": {
           "decks": 9,
@@ -2109,13 +2109,13 @@
     },
     "ST05-010": {
       "card_id": "ST05-010",
-      "deck_count": 122,
-      "appearance_rate": 0.3042,
+      "deck_count": 124,
+      "appearance_rate": 0.3092,
       "avg_copies_in_deck": 4.0,
-      "weighted_score": 614,
+      "weighted_score": 626,
       "by_placement": {
         "1st": {
-          "decks": 53,
+          "decks": 54,
           "avg_copies": 4.0
         },
         "2nd": {
@@ -2123,7 +2123,7 @@
           "avg_copies": 4.0
         },
         "3rd": {
-          "decks": 4,
+          "decks": 5,
           "avg_copies": 4.0
         },
         "Top 4": {
@@ -2145,8 +2145,8 @@
           "appearance_rate": 0.1746
         },
         "Large Official Event": {
-          "decks": 39,
-          "appearance_rate": 0.0973
+          "decks": 41,
+          "appearance_rate": 0.1022
         },
         "Unofficial Event": {
           "decks": 12,
@@ -2369,10 +2369,10 @@
     },
     "ST01-015": {
       "card_id": "ST01-015",
-      "deck_count": 52,
-      "appearance_rate": 0.1297,
-      "avg_copies_in_deck": 1.75,
-      "weighted_score": 226,
+      "deck_count": 53,
+      "appearance_rate": 0.1322,
+      "avg_copies_in_deck": 1.74,
+      "weighted_score": 229,
       "by_placement": {
         "1st": {
           "decks": 16,
@@ -2391,8 +2391,8 @@
           "avg_copies": 1.8
         },
         "Top 8": {
-          "decks": 9,
-          "avg_copies": 1.56
+          "decks": 10,
+          "avg_copies": 1.5
         },
         "Top 16": {
           "decks": 12,
@@ -2404,13 +2404,13 @@
         }
       },
       "by_event_type": {
-        "Small Official Event": {
+        "Large Official Event": {
           "decks": 25,
           "appearance_rate": 0.0623
         },
-        "Large Official Event": {
-          "decks": 24,
-          "appearance_rate": 0.0599
+        "Small Official Event": {
+          "decks": 25,
+          "appearance_rate": 0.0623
         },
         "Unofficial Event": {
           "decks": 3,
@@ -2427,18 +2427,18 @@
     },
     "GD01-008": {
       "card_id": "GD01-008",
-      "deck_count": 122,
-      "appearance_rate": 0.3042,
-      "avg_copies_in_deck": 3.88,
-      "weighted_score": 604,
+      "deck_count": 123,
+      "appearance_rate": 0.3067,
+      "avg_copies_in_deck": 3.85,
+      "weighted_score": 610,
       "by_placement": {
         "1st": {
           "decks": 53,
           "avg_copies": 3.85
         },
         "2nd": {
-          "decks": 8,
-          "avg_copies": 3.88
+          "decks": 9,
+          "avg_copies": 3.56
         },
         "3rd": {
           "decks": 6,
@@ -2463,8 +2463,8 @@
           "appearance_rate": 0.1521
         },
         "Large Official Event": {
-          "decks": 44,
-          "appearance_rate": 0.1097
+          "decks": 45,
+          "appearance_rate": 0.1122
         },
         "Unofficial Event": {
           "decks": 17,
@@ -2535,22 +2535,22 @@
     },
     "GD01-018": {
       "card_id": "GD01-018",
-      "deck_count": 68,
-      "appearance_rate": 0.1696,
-      "avg_copies_in_deck": 2.99,
-      "weighted_score": 348,
+      "deck_count": 70,
+      "appearance_rate": 0.1746,
+      "avg_copies_in_deck": 3.01,
+      "weighted_score": 358,
       "by_placement": {
         "1st": {
           "decks": 30,
           "avg_copies": 2.97
         },
         "2nd": {
-          "decks": 7,
-          "avg_copies": 3.57
+          "decks": 8,
+          "avg_copies": 3.62
         },
         "Top 4": {
-          "decks": 11,
-          "avg_copies": 3.09
+          "decks": 12,
+          "avg_copies": 3.17
         },
         "Top 8": {
           "decks": 12,
@@ -2567,8 +2567,8 @@
           "appearance_rate": 0.1122
         },
         "Large Official Event": {
-          "decks": 20,
-          "appearance_rate": 0.0499
+          "decks": 22,
+          "appearance_rate": 0.0549
         },
         "Unofficial Event": {
           "decks": 3,
@@ -2643,10 +2643,10 @@
     },
     "ST01-005": {
       "card_id": "ST01-005",
-      "deck_count": 110,
-      "appearance_rate": 0.2743,
-      "avg_copies_in_deck": 3.46,
-      "weighted_score": 552,
+      "deck_count": 112,
+      "appearance_rate": 0.2793,
+      "avg_copies_in_deck": 3.44,
+      "weighted_score": 560,
       "by_placement": {
         "1st": {
           "decks": 51,
@@ -2657,16 +2657,16 @@
           "avg_copies": 3.67
         },
         "3rd": {
-          "decks": 4,
-          "avg_copies": 3.5
+          "decks": 5,
+          "avg_copies": 3.2
         },
         "Top 4": {
           "decks": 10,
           "avg_copies": 3.8
         },
         "Top 8": {
-          "decks": 21,
-          "avg_copies": 3.38
+          "decks": 22,
+          "avg_copies": 3.32
         },
         "Top 16": {
           "decks": 18,
@@ -2679,8 +2679,8 @@
           "appearance_rate": 0.1496
         },
         "Large Official Event": {
-          "decks": 36,
-          "appearance_rate": 0.0898
+          "decks": 38,
+          "appearance_rate": 0.0948
         },
         "Unofficial Event": {
           "decks": 14,
@@ -3217,10 +3217,10 @@
     },
     "ST03-008": {
       "card_id": "ST03-008",
-      "deck_count": 44,
-      "appearance_rate": 0.1097,
+      "deck_count": 45,
+      "appearance_rate": 0.1122,
       "avg_copies_in_deck": 3.89,
-      "weighted_score": 225,
+      "weighted_score": 228,
       "by_placement": {
         "1st": {
           "decks": 21,
@@ -3235,8 +3235,8 @@
           "avg_copies": 3.8
         },
         "Top 8": {
-          "decks": 7,
-          "avg_copies": 3.86
+          "decks": 8,
+          "avg_copies": 3.88
         },
         "Top 16": {
           "decks": 3,
@@ -3253,8 +3253,8 @@
           "appearance_rate": 0.0873
         },
         "Large Official Event": {
-          "decks": 5,
-          "appearance_rate": 0.0125
+          "decks": 6,
+          "appearance_rate": 0.015
         },
         "Unofficial Event": {
           "decks": 4,
@@ -3769,10 +3769,10 @@
     },
     "ST01-009": {
       "card_id": "ST01-009",
-      "deck_count": 67,
-      "appearance_rate": 0.1671,
-      "avg_copies_in_deck": 3.33,
-      "weighted_score": 360,
+      "deck_count": 68,
+      "appearance_rate": 0.1696,
+      "avg_copies_in_deck": 3.34,
+      "weighted_score": 363,
       "by_placement": {
         "1st": {
           "decks": 34,
@@ -3791,8 +3791,8 @@
           "avg_copies": 3.25
         },
         "Top 8": {
-          "decks": 7,
-          "avg_copies": 3.43
+          "decks": 8,
+          "avg_copies": 3.5
         },
         "Top 16": {
           "decks": 4,
@@ -3813,8 +3813,8 @@
           "appearance_rate": 0.02
         },
         "Large Official Event": {
-          "decks": 5,
-          "appearance_rate": 0.0125
+          "decks": 6,
+          "appearance_rate": 0.015
         },
         "Small Unofficial Event": {
           "decks": 1,
@@ -3936,10 +3936,10 @@
     },
     "GD01-031": {
       "card_id": "GD01-031",
-      "deck_count": 7,
-      "appearance_rate": 0.0175,
-      "avg_copies_in_deck": 3.14,
-      "weighted_score": 27,
+      "deck_count": 8,
+      "appearance_rate": 0.02,
+      "avg_copies_in_deck": 3.0,
+      "weighted_score": 30,
       "by_placement": {
         "1st": {
           "decks": 2,
@@ -3948,6 +3948,10 @@
         "Top 4": {
           "decks": 2,
           "avg_copies": 3.5
+        },
+        "Top 8": {
+          "decks": 1,
+          "avg_copies": 2.0
         },
         "Top 16": {
           "decks": 2,
@@ -3962,6 +3966,10 @@
         "Small Official Event": {
           "decks": 6,
           "appearance_rate": 0.015
+        },
+        "Large Official Event": {
+          "decks": 1,
+          "appearance_rate": 0.0025
         },
         "Unofficial Event": {
           "decks": 1,
@@ -4164,10 +4172,10 @@
     },
     "GD01-123": {
       "card_id": "GD01-123",
-      "deck_count": 12,
-      "appearance_rate": 0.0299,
+      "deck_count": 13,
+      "appearance_rate": 0.0324,
       "avg_copies_in_deck": 2.0,
-      "weighted_score": 54,
+      "weighted_score": 58,
       "by_placement": {
         "1st": {
           "decks": 4,
@@ -4178,8 +4186,8 @@
           "avg_copies": 1.0
         },
         "Top 4": {
-          "decks": 2,
-          "avg_copies": 1.0
+          "decks": 3,
+          "avg_copies": 1.33
         },
         "Top 8": {
           "decks": 2,
@@ -4196,26 +4204,26 @@
           "appearance_rate": 0.02
         },
         "Large Official Event": {
-          "decks": 4,
-          "appearance_rate": 0.01
+          "decks": 5,
+          "appearance_rate": 0.0125
         }
       },
       "top_archetypes": [
-        "The-O Blockers",
         "Barbatos Rush",
+        "The-O Blockers",
         "Unicorn Blockers"
       ]
     },
     "GD02-058": {
       "card_id": "GD02-058",
-      "deck_count": 21,
-      "appearance_rate": 0.0524,
-      "avg_copies_in_deck": 3.29,
-      "weighted_score": 123,
+      "deck_count": 22,
+      "appearance_rate": 0.0549,
+      "avg_copies_in_deck": 3.27,
+      "weighted_score": 130,
       "by_placement": {
         "1st": {
-          "decks": 11,
-          "avg_copies": 3.55
+          "decks": 12,
+          "avg_copies": 3.5
         },
         "2nd": {
           "decks": 4,
@@ -4239,6 +4247,10 @@
           "decks": 19,
           "appearance_rate": 0.0474
         },
+        "Large Official Event": {
+          "decks": 1,
+          "appearance_rate": 0.0025
+        },
         "Large Unofficial Event": {
           "decks": 1,
           "appearance_rate": 0.0025
@@ -4252,8 +4264,8 @@
         "Barbatos Ping",
         "Barbatos Blockers",
         "Barbatos Breach",
-        "Lupus Control",
-        "Barbatos Rush"
+        "Barbatos Rush",
+        "Lupus Control"
       ]
     },
     "ST09-003": {
@@ -4384,10 +4396,10 @@
     },
     "ST08-001": {
       "card_id": "ST08-001",
-      "deck_count": 10,
-      "appearance_rate": 0.0249,
-      "avg_copies_in_deck": 1.9,
-      "weighted_score": 60,
+      "deck_count": 11,
+      "appearance_rate": 0.0274,
+      "avg_copies_in_deck": 2.0,
+      "weighted_score": 63,
       "by_placement": {
         "1st": {
           "decks": 7,
@@ -4398,14 +4410,18 @@
           "avg_copies": 2.0
         },
         "Top 8": {
-          "decks": 1,
-          "avg_copies": 2.0
+          "decks": 2,
+          "avg_copies": 2.5
         }
       },
       "by_event_type": {
         "Small Official Event": {
           "decks": 9,
           "appearance_rate": 0.0224
+        },
+        "Large Official Event": {
+          "decks": 1,
+          "appearance_rate": 0.0025
         },
         "Unofficial Event": {
           "decks": 1,
@@ -6105,10 +6121,10 @@
     },
     "GD01-116": {
       "card_id": "GD01-116",
-      "deck_count": 10,
-      "appearance_rate": 0.0249,
-      "avg_copies_in_deck": 2.2,
-      "weighted_score": 52,
+      "deck_count": 11,
+      "appearance_rate": 0.0274,
+      "avg_copies_in_deck": 2.18,
+      "weighted_score": 55,
       "by_placement": {
         "1st": {
           "decks": 4,
@@ -6127,7 +6143,7 @@
           "avg_copies": 2.0
         },
         "Top 8": {
-          "decks": 1,
+          "decks": 2,
           "avg_copies": 2.0
         },
         "Top 16": {
@@ -6141,8 +6157,8 @@
           "appearance_rate": 0.02
         },
         "Large Official Event": {
-          "decks": 2,
-          "appearance_rate": 0.005
+          "decks": 3,
+          "appearance_rate": 0.0075
         }
       },
       "top_archetypes": [
@@ -7202,138 +7218,6 @@
         "Unicorn Gundam (Cyber-Newtype)"
       ]
     },
-    "ST05-010:4|GD02-058": {
-      "card_id": "ST05-010:4|GD02-058",
-      "deck_count": 1,
-      "appearance_rate": 0.0025,
-      "avg_copies_in_deck": 3.0,
-      "weighted_score": 7,
-      "by_placement": {
-        "1st": {
-          "decks": 1,
-          "avg_copies": 3.0
-        }
-      },
-      "by_event_type": {
-        "Large Official Event": {
-          "decks": 1,
-          "appearance_rate": 0.0025
-        }
-      },
-      "top_archetypes": [
-        "Barbatos Rush"
-      ]
-    },
-    "GD01-018:4|GD01-008": {
-      "card_id": "GD01-018:4|GD01-008",
-      "deck_count": 1,
-      "appearance_rate": 0.0025,
-      "avg_copies_in_deck": 1.0,
-      "weighted_score": 6,
-      "by_placement": {
-        "2nd": {
-          "decks": 1,
-          "avg_copies": 1.0
-        }
-      },
-      "by_event_type": {
-        "Large Official Event": {
-          "decks": 1,
-          "appearance_rate": 0.0025
-        }
-      },
-      "top_archetypes": [
-        "Barbatos Rush"
-      ]
-    },
-    "ST05-010:4|ST01-005": {
-      "card_id": "ST05-010:4|ST01-005",
-      "deck_count": 1,
-      "appearance_rate": 0.0025,
-      "avg_copies_in_deck": 2.0,
-      "weighted_score": 5,
-      "by_placement": {
-        "3rd": {
-          "decks": 1,
-          "avg_copies": 2.0
-        }
-      },
-      "by_event_type": {
-        "Large Official Event": {
-          "decks": 1,
-          "appearance_rate": 0.0025
-        }
-      },
-      "top_archetypes": [
-        "Barbatos Rush"
-      ]
-    },
-    "GD01-018:4|GD01-123": {
-      "card_id": "GD01-018:4|GD01-123",
-      "deck_count": 1,
-      "appearance_rate": 0.0025,
-      "avg_copies_in_deck": 2.0,
-      "weighted_score": 4,
-      "by_placement": {
-        "Top 4": {
-          "decks": 1,
-          "avg_copies": 2.0
-        }
-      },
-      "by_event_type": {
-        "Large Official Event": {
-          "decks": 1,
-          "appearance_rate": 0.0025
-        }
-      },
-      "top_archetypes": [
-        "Barbatos Rush"
-      ]
-    },
-    "ST08-001:3|GD01-116": {
-      "card_id": "ST08-001:3|GD01-116",
-      "deck_count": 1,
-      "appearance_rate": 0.0025,
-      "avg_copies_in_deck": 2.0,
-      "weighted_score": 3,
-      "by_placement": {
-        "Top 8": {
-          "decks": 1,
-          "avg_copies": 2.0
-        }
-      },
-      "by_event_type": {
-        "Large Official Event": {
-          "decks": 1,
-          "appearance_rate": 0.0025
-        }
-      },
-      "top_archetypes": [
-        "Banshee Control"
-      ]
-    },
-    "ST01-009:4|ST01-014": {
-      "card_id": "ST01-009:4|ST01-014",
-      "deck_count": 1,
-      "appearance_rate": 0.0025,
-      "avg_copies_in_deck": 1.0,
-      "weighted_score": 3,
-      "by_placement": {
-        "Top 8": {
-          "decks": 1,
-          "avg_copies": 1.0
-        }
-      },
-      "by_event_type": {
-        "Large Official Event": {
-          "decks": 1,
-          "appearance_rate": 0.0025
-        }
-      },
-      "top_archetypes": [
-        "Wing Zero"
-      ]
-    },
     "GD01-029": {
       "card_id": "GD01-029",
       "deck_count": 3,
@@ -7372,28 +7256,6 @@
         "Wing Zero"
       ]
     },
-    "ST01-015:1|ST01-005": {
-      "card_id": "ST01-015:1|ST01-005",
-      "deck_count": 1,
-      "appearance_rate": 0.0025,
-      "avg_copies_in_deck": 2.0,
-      "weighted_score": 3,
-      "by_placement": {
-        "Top 8": {
-          "decks": 1,
-          "avg_copies": 2.0
-        }
-      },
-      "by_event_type": {
-        "Large Official Event": {
-          "decks": 1,
-          "appearance_rate": 0.0025
-        }
-      },
-      "top_archetypes": [
-        "Barbatos Rush"
-      ]
-    },
     "GD02-010": {
       "card_id": "GD02-010",
       "deck_count": 1,
@@ -7414,28 +7276,6 @@
       },
       "top_archetypes": [
         "Barbatos Rush"
-      ]
-    },
-    "ST03-008:4|GD01-031": {
-      "card_id": "ST03-008:4|GD01-031",
-      "deck_count": 1,
-      "appearance_rate": 0.0025,
-      "avg_copies_in_deck": 2.0,
-      "weighted_score": 3,
-      "by_placement": {
-        "Top 8": {
-          "decks": 1,
-          "avg_copies": 2.0
-        }
-      },
-      "by_event_type": {
-        "Large Official Event": {
-          "decks": 1,
-          "appearance_rate": 0.0025
-        }
-      },
-      "top_archetypes": [
-        "Zeon Aggro"
       ]
     },
     "GD01-036": {

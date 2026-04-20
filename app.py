@@ -22,7 +22,8 @@ def card_image(card_id: str) -> str | Path:
     return CDN_URL.format(card_id=card_id)
 
 
-LR_CARDS_FILE = Path("assets/lr_cards.json")
+ARCH_LR_FILE     = Path("assets/archetype_lr_cards.json")
+ARCH_GROUPS_FILE = Path("assets/archetype_groups.json")
 
 @st.cache_data
 def load_card_names() -> dict:
@@ -32,10 +33,41 @@ def load_card_names() -> dict:
 
 
 @st.cache_data
-def load_lr_cards() -> dict:
-    if LR_CARDS_FILE.exists():
-        return json.loads(LR_CARDS_FILE.read_text(encoding="utf-8"))
+def load_arch_lr_cards() -> dict:
+    if ARCH_LR_FILE.exists():
+        return {k: v for k, v in json.loads(ARCH_LR_FILE.read_text(encoding="utf-8")).items() if v}
     return {}
+
+
+@st.cache_data
+def load_arch_groups() -> dict:
+    if ARCH_GROUPS_FILE.exists():
+        return json.loads(ARCH_GROUPS_FILE.read_text(encoding="utf-8"))
+    return {}
+
+
+def apply_arch_groups(arch_data: dict, groups: dict) -> dict:
+    """Merge grouped archetypes into a single entry, return updated dict."""
+    # Build reverse map: member → group name
+    member_to_group = {m: g for g, members in groups.items() for m in members}
+    merged: dict[str, dict] = {}
+    for arch, data in arch_data.items():
+        target = member_to_group.get(arch, arch)
+        if target not in merged:
+            merged[target] = {
+                "archetype":    target,
+                "deck_count":   0,
+                "meta_share":   0.0,
+                "placements":   {},
+                "top_finishes": 0,
+            }
+        m = merged[target]
+        m["deck_count"]   += data["deck_count"]
+        m["meta_share"]   += data["meta_share"]
+        m["top_finishes"] += data["top_finishes"]
+        for placement, count in data["placements"].items():
+            m["placements"][placement] = m["placements"].get(placement, 0) + count
+    return merged
 
 
 def card_label(card_id: str, card_names: dict) -> str:
@@ -50,6 +82,7 @@ def short_name(card_id: str, card_names: dict, max_len: int = 15) -> str:
     if not name:
         return card_id
     return name if len(name) <= max_len else name[:max_len - 1] + "…"
+
 
 
 def deck_color_combo(deck: dict, card_names: dict) -> str:
@@ -119,10 +152,15 @@ if not RAW.exists() or not ANALYZED.exists():
 
 raw, analyzed = load_data()
 card_names = load_card_names()
+arch_lr_cards = load_arch_lr_cards()
+arch_groups = load_arch_groups()
 meta = analyzed["meta"]
 cards_data = analyzed["cards"]
 arch_data = analyzed["archetypes"]
 raw_df = pd.DataFrame(raw)
+
+grouped_arch = apply_arch_groups(arch_data, arch_groups)
+member_to_group = {m: g for g, members in arch_groups.items() for m in members}
 
 # ── Helper: build cards DataFrame ─────────────────────────────────────────────
 
@@ -140,7 +178,7 @@ def cards_df() -> pd.DataFrame:
             "Appearance %":   round(c["appearance_rate"] * 100, 1),
             "Weighted Score": c["weighted_score"],
             "Avg Copies":     c["avg_copies_in_deck"],
-            "Top Archetypes": ", ".join(c["top_archetypes"][:3]),
+            "Top Archetypes": ", ".join(dict.fromkeys(member_to_group.get(a, a) for a in c["top_archetypes"][:3])),
         })
     return pd.DataFrame(rows).sort_values("Weighted Score", ascending=False).reset_index(drop=True)
 
@@ -155,72 +193,46 @@ if page == "Meta Overview":
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Total Decks", meta["total_decks"])
     c2.metric("Events Tracked", meta["total_events"])
-    c3.metric("Unique Archetypes", meta["archetypes_tracked"])
+    c3.metric("Unique Archetypes", len(grouped_arch))
     c4.metric("Cards Tracked", meta["cards_tracked"])
 
     st.divider()
 
-    # Archetype meta share
+    # Archetype meta share (with groupings applied)
     arch_df = (
-        pd.DataFrame(arch_data.values())
+        pd.DataFrame(grouped_arch.values())
         .sort_values("deck_count", ascending=False)
         .reset_index(drop=True)
     )
     arch_df["Meta %"] = (arch_df["meta_share"] * 100).round(1)
 
-    col_left, col_right = st.columns([1, 1])
+    st.subheader("Top Archetypes — Win Rate Proxy")
+    top15 = arch_df.head(15).copy()
+    top15["Top Finishes"] = top15["top_finishes"]
+    top15["Conv %"] = (top15["top_finishes"] / top15["deck_count"] * 100).round(1)
 
-    with col_left:
-        st.subheader("Archetype Meta Share")
-        top_n = arch_df.head(10).copy()
-        other_count = arch_df.iloc[10:]["deck_count"].sum()
-        if other_count:
-            other_row = pd.DataFrame([{
-                "archetype": "Other",
-                "deck_count": other_count,
-                "Meta %": round(other_count / meta["total_decks"] * 100, 1),
-            }])
-            top_n = pd.concat([top_n, other_row], ignore_index=True)
-
-        fig = px.pie(
-            top_n,
-            names="archetype",
-            values="deck_count",
-            hole=0.4,
-            color_discrete_sequence=px.colors.qualitative.Bold,
-        )
-        fig.update_traces(textposition="inside", textinfo="percent+label")
-        fig.update_layout(showlegend=False, margin=dict(t=10, b=10))
-        st.plotly_chart(fig, use_container_width=True)
-
-    with col_right:
-        st.subheader("Top Archetypes — Win Rate Proxy")
-        top15 = arch_df.head(15).copy()
-        top15["Top Finishes"] = top15["top_finishes"]
-        top15["Conv %"] = (top15["top_finishes"] / top15["deck_count"] * 100).round(1)
-
-        fig2 = go.Figure()
-        fig2.add_trace(go.Bar(
-            x=top15["archetype"],
-            y=top15["deck_count"],
-            name="Total Decks",
-            marker_color="steelblue",
-            opacity=0.6,
-        ))
-        fig2.add_trace(go.Bar(
-            x=top15["archetype"],
-            y=top15["Top Finishes"],
-            name="Top-3 Finishes",
-            marker_color="gold",
-        ))
-        fig2.update_layout(
-            barmode="overlay",
-            xaxis_tickangle=-40,
-            legend=dict(orientation="h", y=1.1),
-            margin=dict(t=10, b=120),
-            yaxis_title="Decks",
-        )
-        st.plotly_chart(fig2, use_container_width=True)
+    fig2 = go.Figure()
+    fig2.add_trace(go.Bar(
+        x=top15["archetype"],
+        y=top15["deck_count"],
+        name="Total Decks",
+        marker_color="steelblue",
+        opacity=0.6,
+    ))
+    fig2.add_trace(go.Bar(
+        x=top15["archetype"],
+        y=top15["Top Finishes"],
+        name="Top-3 Finishes",
+        marker_color="gold",
+    ))
+    fig2.update_layout(
+        barmode="overlay",
+        xaxis_tickangle=-40,
+        legend=dict(orientation="h", y=1.1),
+        margin=dict(t=10, b=120),
+        yaxis_title="Decks",
+    )
+    st.plotly_chart(fig2, use_container_width=True)
 
     st.divider()
     st.subheader("Archetype Table")
@@ -229,57 +241,59 @@ if page == "Meta Overview":
     )
     st.dataframe(display_arch, use_container_width=True, hide_index=True)
 
-    # ── Most Common LR Cards ──────────────────────────────────────────────────
-    st.divider()
-    st.subheader("Most Common LR Cards")
+    # ── Archetype Signature Cards ─────────────────────────────────────────────
+    if arch_lr_cards:
+        st.divider()
+        st.subheader("Archetype Signature Cards")
 
-    lr_rows = []
-    for cid, c in cards_data.items():
-        info = card_names.get(cid, {})
-        if info.get("rarity", "") == "LR":
-            lr_rows.append({
-                "Card ID":        cid,
-                "Name":           info.get("name", cid),
-                "Appearance %":   round(c["appearance_rate"] * 100, 1),
-                "Decks":          c["deck_count"],
-                "Weighted Score": c["weighted_score"],
+        # Build display rows using grouped archetypes
+        # For each grouped archetype, find a card ID from any of its members
+        sig_items = []
+        seen = set()
+        for a in grouped_arch.values():
+            arch_name = a["archetype"]
+            if arch_name in seen:
+                continue
+            # Find card ID: check direct match, then check if it's a group and use first member's card
+            card_id = arch_lr_cards.get(arch_name)
+            if not card_id:
+                members = arch_groups.get(arch_name, [])
+                for m in members:
+                    card_id = arch_lr_cards.get(m)
+                    if card_id:
+                        break
+            if not card_id:
+                continue
+            seen.add(arch_name)
+            sig_items.append({
+                "archetype": arch_name,
+                "card_id":   card_id,
+                "pct":       round(a["meta_share"] * 100, 1),
+                "decks":     a["deck_count"],
             })
+        sig_items.sort(key=lambda x: -x["pct"])
 
-    if not lr_rows:
-        st.info("No LR rarity data found — re-run **build_card_names.py** to populate rarity.")
-    else:
-        lr_df = (
-            pd.DataFrame(lr_rows)
-            .sort_values("Appearance %", ascending=False)
-            .head(12)
-            .reset_index(drop=True)
+        # Render as a flex grid of cards with overlaid white text
+        cards_html = ""
+        for item in sig_items:
+            img_url = CDN_URL.format(card_id=item["card_id"])
+            cards_html += f"""
+            <div style="position:relative;width:140px;flex-shrink:0;">
+              <img src="{img_url}"
+                   style="width:100%;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.5);display:block;">
+              <div style="position:absolute;bottom:0;left:0;right:0;
+                          background:linear-gradient(transparent,rgba(0,0,0,0.82));
+                          border-radius:0 0 8px 8px;padding:18px 4px 6px;text-align:center;">
+                <div style="color:white;font-size:22px;font-weight:700;line-height:1.1;">{item['pct']}%</div>
+                <div style="color:#ddd;font-size:11px;margin-top:2px;">{item['archetype']}</div>
+              </div>
+            </div>"""
+
+        st.markdown(
+            f'<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start;">'
+            f'{cards_html}</div>',
+            unsafe_allow_html=True,
         )
-
-        lr_left, lr_right = st.columns(2)
-
-        with lr_left:
-            fig_lr = px.pie(
-                lr_df,
-                names="Name",
-                values="Appearance %",
-                hole=0.4,
-                color_discrete_sequence=px.colors.qualitative.Bold,
-            )
-            fig_lr.update_traces(
-                textposition="inside",
-                textinfo="percent+label",
-                textfont=dict(size=18, color="white"),
-                insidetextorientation="radial",
-            )
-            fig_lr.update_layout(showlegend=False, margin=dict(t=10, b=10))
-            st.plotly_chart(fig_lr, use_container_width=True)
-
-        with lr_right:
-            st.dataframe(
-                lr_df[["Name", "Card ID", "Decks", "Appearance %", "Weighted Score"]],
-                use_container_width=True,
-                hide_index=True,
-            )
 
     # ── Color Combination Breakdown ───────────────────────────────────────────
     st.divider()
@@ -532,28 +546,75 @@ elif page == "Card Stats":
 elif page == "Archetype Deep Dive":
     st.header("Archetype Deep Dive")
 
-    arch_names = sorted(arch_data.keys(), key=lambda a: -arch_data[a]["deck_count"])
-    selected_arch = st.selectbox("Select archetype", arch_names)
+    # Event selector — Large Official Events sorted by date
+    all_major_events = sorted(
+        {(d["event"], d["date"]) for d in raw if d.get("event_type") == "Large Official Event"},
+        key=lambda x: x[1],
+    )
+    event_labels = {f"{date} — {event}": event for event, date in all_major_events}
+    selected_event_labels = st.multiselect(
+        "Filter by event",
+        options=list(event_labels.keys()),
+        default=list(event_labels.keys()),
+    )
+    selected_events = {event_labels[l] for l in selected_event_labels}
 
-    arch = arch_data[selected_arch]
-    arch_decks = [d for d in raw if d["archetype"] == selected_arch]
+    # Build color combo map for every raw deck
+    deck_combos = [(deck, deck_color_combo(deck, card_names)) for deck in raw]
+    combo_deck_counts = {}
+    for _, combo in deck_combos:
+        combo_deck_counts[combo] = combo_deck_counts.get(combo, 0) + 1
+    color_combos = sorted(combo_deck_counts, key=lambda c: -combo_deck_counts[c])
+
+    selected_combo = st.selectbox("Select color combination", color_combos)
+
+    arch_decks = [deck for deck, combo in deck_combos if combo == selected_combo]
+    total_decks = len(arch_decks)
+
+    PLACEMENT_POINTS = {"1st": 7, "2nd": 6, "3rd": 5, "Top 4": 4, "Top 8": 3, "Top 16": 2, "Top 32": 1}
+    top3 = sum(1 for d in arch_decks if (d.get("placing_clean") or d.get("placing", "")) in ("1st", "2nd", "3rd"))
+    meta_share = total_decks / meta["total_decks"] * 100 if meta["total_decks"] else 0
 
     m1, m2, m3, m4 = st.columns(4)
-    m1.metric("Total Decks", arch["deck_count"])
-    m2.metric("Meta Share", f"{arch['meta_share']*100:.1f}%")
-    m3.metric("Top-3 Finishes", arch["top_finishes"])
-    conv = arch["top_finishes"] / arch["deck_count"] * 100 if arch["deck_count"] else 0
+    m1.metric("Total Decks", total_decks)
+    m2.metric("Meta Share", f"{meta_share:.1f}%")
+    m3.metric("Top-3 Finishes", top3)
+    conv = top3 / total_decks * 100 if total_decks else 0
     m4.metric("Top-3 Rate", f"{conv:.1f}%")
 
     st.divider()
     col_l, col_r = st.columns(2)
 
-    # Placement distribution
+    # Placement distribution (Large Official Events only)
+    def placement_bucket(p: str) -> str | None:
+        if p in ("1st",):
+            return "1st"
+        if p in ("2nd", "3rd", "4th", "Top 4"):
+            return "Top 4"
+        if p in ("5th", "6th", "7th", "8th", "Top 8"):
+            return "Top 8"
+        if p in ("9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "Top 16"):
+            return "Top 16"
+        return None
+
+    BUCKET_ORDER = ["1st", "Top 4", "Top 8", "Top 16"]
+
     with col_l:
         st.subheader("Placement Distribution")
-        place_df = (
-            pd.DataFrame(list(arch["placements"].items()), columns=["Placement", "Count"])
-            .sort_values("Count", ascending=False)
+        st.caption("Large Official Events only")
+        major_decks = [
+            d for d in arch_decks
+            if d.get("event_type") == "Large Official Event"
+            and (not selected_events or d.get("event") in selected_events)
+        ]
+        place_counts: dict[str, int] = {b: 0 for b in BUCKET_ORDER}
+        for deck in major_decks:
+            p = deck.get("placing_clean") or deck.get("placing", "")
+            bucket = placement_bucket(p)
+            if bucket:
+                place_counts[bucket] += 1
+        place_df = pd.DataFrame(
+            [{"Placement": b, "Count": place_counts[b]} for b in BUCKET_ORDER]
         )
         fig = px.bar(
             place_df, x="Placement", y="Count",
@@ -566,7 +627,7 @@ elif page == "Archetype Deep Dive":
 
     # Card frequency within this archetype
     with col_r:
-        st.subheader("Most-Played Cards in Archetype")
+        st.subheader("Most-Played Cards in Color Combo")
         card_counter: dict[str, dict] = {}
         for deck in arch_decks:
             for card in deck["cards"]:
@@ -576,19 +637,26 @@ elif page == "Archetype Deep Dive":
                 card_counter[cid]["count"] += 1
                 card_counter[cid]["total"] += card["quantity"]
 
+        total_arch_decks = len(arch_decks) or 1
         arch_card_df = pd.DataFrame([
             {
                 "Card ID": cid,
                 "Label": short_name(cid, card_names),
                 "Name": card_names.get(cid, {}).get("name", "—"),
                 "Color": card_names.get(cid, {}).get("color", "—"),
-                "Rarity": card_names.get(cid, {}).get("rarity", "—"),
                 "Decks": v["count"],
-                "Inclusion %": round(v["count"] / arch["deck_count"] * 100, 1),
+                "Inclusion %": round(v["count"] / total_arch_decks * 100, 1),
                 "Avg Copies": round(v["total"] / v["count"], 2),
             }
             for cid, v in card_counter.items()
         ]).sort_values("Decks", ascending=False).head(20).reset_index(drop=True)
+
+        # Deduplicate labels: append card ID when two cards share the same truncated name
+        dup_labels = arch_card_df["Label"].duplicated(keep=False)
+        arch_card_df.loc[dup_labels, "Label"] = (
+            arch_card_df.loc[dup_labels, "Label"] + " ("
+            + arch_card_df.loc[dup_labels, "Card ID"] + ")"
+        )
         arch_card_df.index += 1
 
         fig2 = px.bar(
