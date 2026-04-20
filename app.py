@@ -429,6 +429,41 @@ elif page == "Card Analysis":
         top_n = st.slider("Top N cards", 10, 50, 20)
 
     hide_staples = st.toggle("Hide staples (avg ≥ 3.5 copies)", value=False)
+    hide_universal = st.toggle("Hide cards present in 100% of decks", value=True)
+
+    # ── Restriction list ──────────────────────────────────────────────────────
+    RESTRICTIONS_FILE = Path("assets/card_restrictions.json")
+    if "card_restrictions" not in st.session_state:
+        st.session_state["card_restrictions"] = (
+            json.loads(RESTRICTIONS_FILE.read_text(encoding="utf-8"))
+            if RESTRICTIONS_FILE.exists() else {"banned": [], "restricted": []}
+        )
+    with st.expander("Ban / Restriction list"):
+        st.caption("Banned and restricted cards are excluded from all charts to reduce data skew.")
+        r_opts = sorted(
+            {cid: card_names.get(cid, {}).get("name", cid) for cid in cards_data}.items(),
+            key=lambda x: x[1],
+        )
+        fmt = lambda cid: f"{card_names.get(cid, {}).get('name', cid)} ({cid})"
+        rc1, rc2 = st.columns(2)
+        with rc1:
+            st.markdown("**Banned**")
+            new_banned = st.multiselect("Banned cards", [c for c, _ in r_opts], format_func=fmt,
+                default=st.session_state["card_restrictions"].get("banned", []), key="banned_widget")
+        with rc2:
+            st.markdown("**Restricted** (≤2 copies)")
+            new_restricted = st.multiselect("Restricted cards", [c for c, _ in r_opts], format_func=fmt,
+                default=st.session_state["card_restrictions"].get("restricted", []), key="restricted_widget")
+        if st.button("Save restriction list", use_container_width=True):
+            st.session_state["card_restrictions"] = {"banned": new_banned, "restricted": new_restricted}
+            RESTRICTIONS_FILE.write_text(
+                json.dumps({"banned": new_banned, "restricted": new_restricted}, indent=2), encoding="utf-8"
+            )
+            st.success("Saved.")
+    restricted_ids = set(
+        st.session_state["card_restrictions"].get("banned", []) +
+        st.session_state["card_restrictions"].get("restricted", [])
+    )
 
     EXCLUSIONS_FILE = Path("assets/card_exclusions.json")
     if "excluded_card_ids" not in st.session_state:
@@ -521,9 +556,9 @@ elif page == "Card Analysis":
         without_ranks = [r for did, r in all_ranked if did not in with_ids]
         if not with_ranks or not without_ranks:
             return None
-        avg_with    = sum(with_ranks) / len(with_ranks)
+        avg_with = sum(with_ranks) / len(with_ranks)
         avg_without = sum(without_ranks) / len(without_ranks)
-        return round(avg_without - avg_with, 2)  # positive = card improves placing
+        return round(avg_without - avg_with, 2)
 
     denom = total_decks or 1
     scoped_df = pd.DataFrame([
@@ -538,9 +573,13 @@ elif page == "Card Analysis":
         for cid, v in card_counter.items()
     ]).sort_values("Weighted Score", ascending=False).reset_index(drop=True)
 
-    filtered_df = scoped_df[~scoped_df["Card ID"].isin(excluded_ids)]
+    universal_ids = {cid for cid, v in card_counter.items() if v["count"] >= total_decks}
+
+    filtered_df = scoped_df[~scoped_df["Card ID"].isin(excluded_ids | restricted_ids)]
     if hide_staples:
         filtered_df = filtered_df[filtered_df["Avg Copies"] < 3.5]
+    if hide_universal:
+        filtered_df = filtered_df[~filtered_df["Card ID"].isin(universal_ids)]
     df_display = filtered_df.sort_values(sort_by, ascending=False).head(top_n).reset_index(drop=True)
 
     # Signal based on Rank Δ (positive delta = card improves avg placing)
