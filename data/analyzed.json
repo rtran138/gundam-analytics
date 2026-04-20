@@ -4,7 +4,7 @@
     "total_events": 45,
     "cards_tracked": 264,
     "archetypes_tracked": 43,
-    "last_updated": "2026-04-20T01:32:21",
+    "last_updated": "2026-04-20T01:57:24",
     "placement_distribution": {
       "1st": 191,
       "2nd": 23,
@@ -9966,7 +9966,7 @@
         "Top 8": 2,
         "Top 16": 4
       },
-      "top_finishes": 20
+      "top_finishes": 28
     },
     "The-O Blockers": {
       "archetype": "The-O Blockers",
@@ -9980,7 +9980,7 @@
         "Top 4": 8,
         "3rd": 1
       },
-      "top_finishes": 26
+      "top_finishes": 34
     },
     "Academy": {
       "archetype": "Academy",
@@ -10003,7 +10003,7 @@
         "2nd": 9,
         "Top 4": 8
       },
-      "top_finishes": 47
+      "top_finishes": 55
     },
     "Wing Zero": {
       "archetype": "Wing Zero",
@@ -10016,7 +10016,7 @@
         "1st": 19,
         "Top 4": 2
       },
-      "top_finishes": 21
+      "top_finishes": 23
     },
     "Providence": {
       "archetype": "Providence",
@@ -10030,7 +10030,7 @@
         "2nd": 1,
         "3rd": 1
       },
-      "top_finishes": 7
+      "top_finishes": 8
     },
     "Zeon Aggro": {
       "archetype": "Zeon Aggro",
@@ -10042,7 +10042,7 @@
         "3rd": 1,
         "Top 4": 2
       },
-      "top_finishes": 16
+      "top_finishes": 18
     },
     "Unicorn Blockers": {
       "archetype": "Unicorn Blockers",
@@ -10054,7 +10054,7 @@
         "Top 8": 2,
         "Top 4": 5
       },
-      "top_finishes": 5
+      "top_finishes": 10
     },
     "Lupus Control": {
       "archetype": "Lupus Control",
@@ -10078,7 +10078,7 @@
         "2nd": 1,
         "Top 32": 1
       },
-      "top_finishes": 18
+      "top_finishes": 27
     },
     "Impulse Blockers": {
       "archetype": "Impulse Blockers",
@@ -10103,7 +10103,7 @@
         "2nd": 1,
         "1st": 1
       },
-      "top_finishes": 4
+      "top_finishes": 10
     },
     "Impulse": {
       "archetype": "Impulse",
@@ -10124,7 +10124,7 @@
         "1st": 4,
         "Top 4": 1
       },
-      "top_finishes": 5
+      "top_finishes": 6
     },
     "Zeon Aggro (Unicorn)": {
       "archetype": "Zeon Aggro (Unicorn)",
@@ -10133,7 +10133,7 @@
       "placements": {
         "Top 4": 1
       },
-      "top_finishes": 0
+      "top_finishes": 1
     },
     "Dynames Rush": {
       "archetype": "Dynames Rush",
@@ -10154,7 +10154,7 @@
         "Top 4": 3,
         "1st": 3
       },
-      "top_finishes": 3
+      "top_finishes": 6
     },
     "Barbatos Ping": {
       "archetype": "Barbatos Ping",
@@ -10168,7 +10168,7 @@
         "3rd": 1,
         "Top 16": 1
       },
-      "top_finishes": 17
+      "top_finishes": 19
     },
     "Gquuuuuux Blockers": {
       "archetype": "Gquuuuuux Blockers",
@@ -10219,7 +10219,7 @@
         "Top 4": 3,
         "Top 16": 1
       },
-      "top_finishes": 3
+      "top_finishes": 6
     },
     "GFreD Zeon Aggro": {
       "archetype": "GFreD Zeon Aggro",
@@ -10230,7 +10230,7 @@
         "Top 32": 1,
         "Top 16": 1
       },
-      "top_finishes": 0
+      "top_finishes": 4
     },
     "Justice Blockers (Providence)": {
       "archetype": "Justice Blockers (Providence)",
@@ -10240,7 +10240,7 @@
         "1st": 4,
         "Top 4": 1
       },
-      "top_finishes": 4
+      "top_finishes": 5
     },
     "Unicorn Gundam (Cyber-Newtype)": {
       "archetype": "Unicorn Gundam (Cyber-Newtype)",
@@ -10250,7 +10250,7 @@
         "Top 4": 1,
         "1st": 2
       },
-      "top_finishes": 2
+      "top_finishes": 3
     },
     "Barbatos Breach": {
       "archetype": "Barbatos Breach",
@@ -10260,7 +10260,7 @@
         "1st": 2,
         "Top 4": 1
       },
-      "top_finishes": 2
+      "top_finishes": 3
     },
     "GFreD Aggro": {
       "archetype": "GFreD Aggro",
@@ -10278,7 +10278,7 @@
       "placements": {
         "Top 4": 1
       },
-      "top_finishes": 0
+      "top_finishes": 1
     },
     "Earth Federation Aggro": {
       "archetype": "Earth Federation Aggro",
@@ -10290,7 +10290,7 @@
         "Top 4": 1,
         "3rd": 1
       },
-      "top_finishes": 3
+      "top_finishes": 4
     },
     "Aegis Aggro": {
       "archetype": "Aegis Aggro",
@@ -10299,7 +10299,7 @@
       "placements": {
         "Top 4": 1
       },
-      "top_finishes": 0
+      "top_finishes": 1
     },
     "Zaft": {
       "archetype": "Zaft",
@@ -10327,7 +10327,7 @@
         "2nd": 1,
         "Top 4": 1
       },
-      "top_finishes": 1
+      "top_finishes": 2
     },
     "Wing Zero (Deathscythe)": {
       "archetype": "Wing Zero (Deathscythe)",
@@ -10336,7 +10336,7 @@
       "placements": {
         "Top 4": 1
       },
-      "top_finishes": 0
+      "top_finishes": 1
     },
     "Celestial Being": {
       "archetype": "Celestial Being",
@@ -10383,7 +10383,7 @@
         "Top 4": 1,
         "1st": 1
       },
-      "top_finishes": 1
+      "top_finishes": 2
     },
     "Earth Federation AGE": {
       "archetype": "Earth Federation AGE",
