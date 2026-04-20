@@ -1,0 +1,3282 @@
+{
+  "ST01-001": {
+    "name": "Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST01-002": {
+    "name": "Gundam (MA Form)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST01-003": {
+    "name": "Guncannon",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST01-004": {
+    "name": "Guntank",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST01-005": {
+    "name": "GM",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST01-006": {
+    "name": "Gundam Aerial (Permet Score Six)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST01-007": {
+    "name": "Gundam Aerial (Bit on Form)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST01-008": {
+    "name": "Demi Trainer",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST01-009": {
+    "name": "Zowort",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST01-010": {
+    "name": "Amuro Ray",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "ST01-011": {
+    "name": "Suletta Mercury",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "ST01-012": {
+    "name": "Thoroughly Damaged",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "ST01-013": {
+    "name": "Kai's Resolve",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "ST01-014": {
+    "name": "Unforeseen Incident",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "ST01-015": {
+    "name": "White Base",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "ST01-016": {
+    "name": "Asticassia School of Technology, Earth House",
+    "color": "White",
+    "cardType": "Base"
+  },
+  "ST02-001": {
+    "name": "Wing Gundam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST02-002": {
+    "name": "Wing Gundam (Bird Mode)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST02-003": {
+    "name": "Gundam Heavyarms",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST02-004": {
+    "name": "Gundam Sandrock",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST02-005": {
+    "name": "Maganac",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST02-006": {
+    "name": "Tallgeese",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST02-007": {
+    "name": "Leo",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST02-008": {
+    "name": "Aries",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST02-009": {
+    "name": "Tragos",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST02-010": {
+    "name": "Heero Yuy",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "ST02-011": {
+    "name": "Zechs Merquise",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "ST02-012": {
+    "name": "Simultaneous Fire",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "ST02-013": {
+    "name": "Peaceful Timbre",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "ST02-014": {
+    "name": "Siege Ploy",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "ST02-015": {
+    "name": "Saint Gabriel Institute",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "ST02-016": {
+    "name": "Corsica Base",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "ST03-001": {
+    "name": "Sinanju",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST03-002": {
+    "name": "Angelo's Geara Zulu",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST03-003": {
+    "name": "Geara Zulu",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST03-004": {
+    "name": "Gaza D (Sleeves)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST03-005": {
+    "name": "Dra-C (Sleeves)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST03-006": {
+    "name": "Char's Zaku Ⅱ",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST03-007": {
+    "name": "Zaku Ⅰ",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST03-008": {
+    "name": "Zaku Ⅱ",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST03-009": {
+    "name": "Gouf",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST03-010": {
+    "name": "Full Frontal",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "ST03-011": {
+    "name": "Char Aznable",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "ST03-012": {
+    "name": "Indignation",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "ST03-013": {
+    "name": "Close Combat",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "ST03-014": {
+    "name": "The Blue Giant",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "ST03-015": {
+    "name": "Rewloola",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "ST03-016": {
+    "name": "Falmel",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "ST04-001": {
+    "name": "Aile Strike Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST04-002": {
+    "name": "Strike Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST04-003": {
+    "name": "Moebius Zero",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST04-004": {
+    "name": "Moebius",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST04-005": {
+    "name": "Strike Dagger",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST04-006": {
+    "name": "Aegis Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST04-007": {
+    "name": "Aegis Gundam (MA Mode)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST04-008": {
+    "name": "Ginn",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST04-009": {
+    "name": "Miguel's Ginn",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST04-010": {
+    "name": "Kira Yamato",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "ST04-011": {
+    "name": "Athrun Zala",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "ST04-012": {
+    "name": "Striker Pack",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "ST04-013": {
+    "name": "Hawk of Endymion",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "ST04-014": {
+    "name": "The Magic Bullet of Dusk",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "ST04-015": {
+    "name": "Archangel",
+    "color": "White",
+    "cardType": "Base"
+  },
+  "ST04-016": {
+    "name": "Vesalius",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "ST05-001": {
+    "name": "Gundam Barbatos 4th Form",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST05-002": {
+    "name": "Gundam Barbatos 2nd Form",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST05-003": {
+    "name": "CGS Mobile Worker",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST05-004": {
+    "name": "Graze Custom",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST05-005": {
+    "name": "Gundam Gusion Rebake",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST05-006": {
+    "name": "Hyakuren",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST05-007": {
+    "name": "McGillis' Schwalbe Graze",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST05-008": {
+    "name": "Graze Commander Type",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST05-009": {
+    "name": "Graze",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST05-010": {
+    "name": "Mikazuki Augus",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "ST05-011": {
+    "name": "Akihiro Altland",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "ST05-012": {
+    "name": "McGillis Fareed",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "ST05-013": {
+    "name": "With Iron and Blood",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "ST05-014": {
+    "name": "Fatal Strike",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "ST05-015": {
+    "name": "Isaribi",
+    "color": "Purple",
+    "cardType": "Base"
+  },
+  "ST06-001": {
+    "name": "GQuuuuuuX (Omega Psycommu)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST06-002": {
+    "name": "GQuuuuuuX (Omega Psycommu)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST06-003": {
+    "name": "Gaia's Rick Dom (GQ)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST06-004": {
+    "name": "Gelgoog (GQ)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST06-005": {
+    "name": "Red Gundam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST06-006": {
+    "name": "Red Gundam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST06-007": {
+    "name": "Ortega's Rick Dom (GQ)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST06-008": {
+    "name": "Sugai's Gelgoog (GQ)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST06-009": {
+    "name": "Amate Yuzuriha (Machu)",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "ST06-010": {
+    "name": "Shuji Itō",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "ST06-011": {
+    "name": "Ruthless Tactics",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "ST06-012": {
+    "name": "Schoolgirl and Smuggler",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "ST06-013": {
+    "name": "Fierce Unity",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "ST06-014": {
+    "name": "Clan Battle",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "ST06-015": {
+    "name": "Kaneban Co., Ltd.",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "ST07-001": {
+    "name": "Gundam Exia",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST07-002": {
+    "name": "Gundam Exia",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST07-003": {
+    "name": "Gundam Virtue",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST07-004": {
+    "name": "Gundam Virtue",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST07-005": {
+    "name": "Gundam Dynames",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST07-006": {
+    "name": "Gundam Dynames",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST07-007": {
+    "name": "Gundam Kyrios",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST07-008": {
+    "name": "Gundam Kyrios (Flight Mode)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "ST07-009": {
+    "name": "Setsuna F. Seiei",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "ST07-010": {
+    "name": "Tieria Erde",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "ST07-011": {
+    "name": "Lockon Stratos (Neil)",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "ST07-012": {
+    "name": "Allelujah Haptism",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "ST07-013": {
+    "name": "Armed Intervention",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "ST07-014": {
+    "name": "Tactical Visionary",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "ST07-015": {
+    "name": "Ptolemaios",
+    "color": "Purple",
+    "cardType": "Base"
+  },
+  "ST08-001": {
+    "name": "Ξ Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST08-002": {
+    "name": "Ξ Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST08-003": {
+    "name": "Messer (Type-F Naked) (Commander Type)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST08-004": {
+    "name": "Messer Type-F01",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST08-005": {
+    "name": "Messer Type-F02 Minelayer",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST08-006": {
+    "name": "Penelope",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST08-007": {
+    "name": "Penelope",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST08-008": {
+    "name": "Gustav Karl Type-00",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST08-009": {
+    "name": "Jegan Ground Type-A (Man Hunter)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "ST08-010": {
+    "name": "Hathaway Noa",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "ST08-011": {
+    "name": "Lane Aim",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "ST08-012": {
+    "name": "Words for Hathaway",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "ST08-013": {
+    "name": "Lady Luck",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "ST08-014": {
+    "name": "Valiant",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "ST08-015": {
+    "name": "Davao",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "ST09-001": {
+    "name": "Impulse Gundam",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST09-002": {
+    "name": "Force Impulse Gundam",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST09-003": {
+    "name": "Saviour Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "ST09-004": {
+    "name": "Freedom Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "ST09-005": {
+    "name": "Zaku Warrior",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST09-006": {
+    "name": "Sword Impulse Gundam",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST09-007": {
+    "name": "Blast Impulse Gundam",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "ST09-008": {
+    "name": "Shinn Asuka",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "ST09-009": {
+    "name": "Giant Killing",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "ST09-010": {
+    "name": "Minerva",
+    "color": "Purple",
+    "cardType": "Base"
+  },
+  "GD01-001": {
+    "name": "Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-002": {
+    "name": "Unicorn Gundam (Destroy Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-003": {
+    "name": "Unicorn Gundam 02 Banshee (Destroy Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-004": {
+    "name": "Guncannon",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-005": {
+    "name": "Unicorn Gundam (Unicorn Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-006": {
+    "name": "Delta Plus",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-007": {
+    "name": "Noin's Aries",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-008": {
+    "name": "Guntank",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-009": {
+    "name": "G-Fighter",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-010": {
+    "name": "Unicorn Gundam 02 Banshee (Unicorn Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-011": {
+    "name": "Loto",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-012": {
+    "name": "Zechs' Leo",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-013": {
+    "name": "Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-014": {
+    "name": "G-Sky Easy",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-015": {
+    "name": "Ball",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-016": {
+    "name": "Jegan",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-017": {
+    "name": "Stark Jegan",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-018": {
+    "name": "ReZEL",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-019": {
+    "name": "Byarlant Custom",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-020": {
+    "name": "Anksha",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-021": {
+    "name": "Pisces",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-022": {
+    "name": "Cancer",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD01-023": {
+    "name": "Char's Gelgoog",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-024": {
+    "name": "Wing Gundam Zero",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-025": {
+    "name": "Gundam Deathscythe",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-026": {
+    "name": "Char's Zaku Ⅱ",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-027": {
+    "name": "Big Zam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-028": {
+    "name": "Gundam Sandrock",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-029": {
+    "name": "Shenlong Gundam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-030": {
+    "name": "Rick Dom",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-031": {
+    "name": "Gelgoog",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-032": {
+    "name": "Gyan",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-033": {
+    "name": "Gundam Deathscythe",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-034": {
+    "name": "Gundam Heavyarms",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-035": {
+    "name": "Zaku Ⅱ",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-036": {
+    "name": "Gouf",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-037": {
+    "name": "Gogg",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-038": {
+    "name": "Adzam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-039": {
+    "name": "Dopp",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-040": {
+    "name": "Wing Gundam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-041": {
+    "name": "Shenlong Gundam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-042": {
+    "name": "Duo's Leo",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-043": {
+    "name": "Rasid's Maganac",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD01-044": {
+    "name": "Kshatriya",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-045": {
+    "name": "Duel Gundam (Assault Shroud)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-046": {
+    "name": "Buster Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-047": {
+    "name": "Shamblo",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-048": {
+    "name": "Zaku I Sniper Type",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-049": {
+    "name": "Blitz Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-050": {
+    "name": "LaGOWE",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-051": {
+    "name": "Kshatriya",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-052": {
+    "name": "Geara Zulu (Guards Type)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-053": {
+    "name": "Geara Doga (Heavy Armed Type)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-054": {
+    "name": "Duel Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-055": {
+    "name": "BuCUE",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-056": {
+    "name": "Geara Doga (Sleeves)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-057": {
+    "name": "Dreissen (Sleeves)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-058": {
+    "name": "Galluss-K",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-059": {
+    "name": "Zee Zulu",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-060": {
+    "name": "Zaku Mariner",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-061": {
+    "name": "ZuOOT",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-062": {
+    "name": "GOOhN",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-063": {
+    "name": "ZnO",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-064": {
+    "name": "DINN",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD01-065": {
+    "name": "Freedom Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-066": {
+    "name": "Justice Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-067": {
+    "name": "Gundam Aerial Rebuild",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-068": {
+    "name": "Perfect Strike Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-069": {
+    "name": "Strike Rouge",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-070": {
+    "name": "Gundam Aerial",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-071": {
+    "name": "Gundam Pharact",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-072": {
+    "name": "Launcher Strike Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-073": {
+    "name": "Sword Strike Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-074": {
+    "name": "Chuchu's Demi Trainer",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-075": {
+    "name": "Darilbalde",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-076": {
+    "name": "Michaelis",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-077": {
+    "name": "Strike Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-078": {
+    "name": "Mistral",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-079": {
+    "name": "Skygrasper",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-080": {
+    "name": "Cagalli's Skygrasper",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-081": {
+    "name": "M1 Astray",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-082": {
+    "name": "Gundam Aerial (Mirasoul Flight Unit)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-083": {
+    "name": "Guel's Dilanza",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-084": {
+    "name": "Beguir-Pente",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-085": {
+    "name": "Demi Garrison",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-086": {
+    "name": "Gundam Lfrith",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD01-087": {
+    "name": "Sayla Mass",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD01-088": {
+    "name": "Banagher Links",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD01-089": {
+    "name": "Riddhe Marcenas",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD01-090": {
+    "name": "Duo Maxwell",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD01-091": {
+    "name": "Chang Wufei",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD01-092": {
+    "name": "M'Quve",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD01-093": {
+    "name": "Marida Cruz",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD01-094": {
+    "name": "Yzak Jule",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD01-095": {
+    "name": "Dearka Elthman",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD01-096": {
+    "name": "Cagalli Yula Athha",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD01-097": {
+    "name": "Guel Jeturk",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD01-098": {
+    "name": "Elan Ceres (Enhanced Person Number 4)",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD01-099": {
+    "name": "Intercept Orders",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD01-100": {
+    "name": "A Show of Resolve",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD01-101": {
+    "name": "Deep Devotion",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD01-102": {
+    "name": "Securing the Supply Line",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD01-103": {
+    "name": "The Stubborn Cog",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD01-104": {
+    "name": "Signs of a Revolution",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD01-105": {
+    "name": "Citizens, Take a Stand!",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD01-106": {
+    "name": "Fortress Defense",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD01-107": {
+    "name": "First Contact",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD01-108": {
+    "name": "Strategic Arms",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD01-109": {
+    "name": "The Path to Victory or Defeat",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD01-110": {
+    "name": "Rasid's Orders",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD01-111": {
+    "name": "Battle of Aces",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD01-112": {
+    "name": "Extreme Hatred",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD01-113": {
+    "name": "The Desert Tiger",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD01-114": {
+    "name": "Assault on Torrington Base",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD01-115": {
+    "name": "Zeon Remnant Forces",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD01-116": {
+    "name": "Stealth Stratagem",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD01-117": {
+    "name": "The Witch and the Bride",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD01-118": {
+    "name": "Overflowing Affection",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD01-119": {
+    "name": "Iron-Fisted Discipline",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD01-120": {
+    "name": "Naval Bombardment",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD01-121": {
+    "name": "Midair Modifications",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD01-122": {
+    "name": "Covert Operative",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD01-123": {
+    "name": "Nahel Argama",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "GD01-124": {
+    "name": "Side 7",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "GD01-125": {
+    "name": "Zanzibar",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "GD01-126": {
+    "name": "Underground Desert Base",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "GD01-127": {
+    "name": "Gamow",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "GD01-128": {
+    "name": "Mining Asteroid Palau",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "GD01-129": {
+    "name": "Kusanagi",
+    "color": "White",
+    "cardType": "Base"
+  },
+  "GD01-130": {
+    "name": "13th Tactical Testing Sector",
+    "color": "White",
+    "cardType": "Base"
+  },
+  "GD02-001": {
+    "name": "Psycho Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-002": {
+    "name": "Gundam Epyon",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-003": {
+    "name": "Gundam Mk-II (Titans)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-004": {
+    "name": "Byarlant",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-005": {
+    "name": "Tallgeese",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-006": {
+    "name": "Forbidden Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-007": {
+    "name": "Psycho Gundam (MA Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-008": {
+    "name": "Gabthley",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-009": {
+    "name": "Calamity Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-010": {
+    "name": "Raider Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-011": {
+    "name": "Moebius (Peacemaker Team)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-012": {
+    "name": "Core Booster",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-013": {
+    "name": "Hizack",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-014": {
+    "name": "Galbaldy Beta",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-015": {
+    "name": "Marasai",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-016": {
+    "name": "Barzam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-017": {
+    "name": "Delta Plus (Waverider Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-018": {
+    "name": "Taurus",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-019": {
+    "name": "Raider Gundam (MA Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD02-020": {
+    "name": "Elmeth",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-021": {
+    "name": "Gundam AGE-1 Normal",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-022": {
+    "name": "G-Exes",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-023": {
+    "name": "Gundam AGE-1 Spallow",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-024": {
+    "name": "Red Gundam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-025": {
+    "name": "Gundam Heavyarms",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-026": {
+    "name": "Genoace Custom",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-027": {
+    "name": "Gundam AGE-1 Titus",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-028": {
+    "name": "Abdul's Maganac",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-029": {
+    "name": "Gundam AGE-1 Normal",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-030": {
+    "name": "Genoace",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-031": {
+    "name": "Gundam AGE-1 Titus",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-032": {
+    "name": "White Gundam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-033": {
+    "name": "Kikeroga (MA Mode) (GQ)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-034": {
+    "name": "GQuuuuuuX",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-035": {
+    "name": "Police Zaku (Armored RRU Type)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD02-036": {
+    "name": "Qubeley",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-037": {
+    "name": "Gundam Virsago",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-038": {
+    "name": "GQuuuuuuX (Omega Psycommu)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-039": {
+    "name": "Haman Karn's Gaza C",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-040": {
+    "name": "Gundam Ashtaron",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-041": {
+    "name": "Sugai's Gelgoog (GQ)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-042": {
+    "name": "Gundam Ashtaron (MA Mode)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-043": {
+    "name": "Daughtress Weapon",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-044": {
+    "name": "Daughtress Command",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-045": {
+    "name": "GINN Long-Range Reconnaissance Type",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-046": {
+    "name": "Sayla's Light-Type Guncannon",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-047": {
+    "name": "Gaza C",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-048": {
+    "name": "Zaku Ⅲ (Sleeves)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-049": {
+    "name": "Daughtress",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-050": {
+    "name": "Ga-Zowmn (Sleeves)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-051": {
+    "name": "01 Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-052": {
+    "name": "Guncannon (GQ)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD02-053": {
+    "name": "Gundam X",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-054": {
+    "name": "Gundam Barbatos 1st Form",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-055": {
+    "name": "Gundam Gusion Rebake",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-056": {
+    "name": "Gundam X",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-057": {
+    "name": "Zedas",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-058": {
+    "name": "Ryusei-Go (Graze Custom Ⅱ)",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-059": {
+    "name": "Gundam Airmaster",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-060": {
+    "name": "Gundam Leopard",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-061": {
+    "name": "Hyakuri",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-062": {
+    "name": "Amida's Hyakuren",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-063": {
+    "name": "Gundam Airmaster (Fighter Mode)",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-064": {
+    "name": "Gundam Leopard",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-065": {
+    "name": "Jenice Custom",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-066": {
+    "name": "Gafran",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-067": {
+    "name": "Baqto",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-068": {
+    "name": "Gundam Barbatos 3rd Form",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD02-069": {
+    "name": "Zeta Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-070": {
+    "name": "Gundam Kimaris",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-071": {
+    "name": "Gundam Mk-II (AEUG)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-072": {
+    "name": "Hyaku-Shiki",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-073": {
+    "name": "Carta's Graze Ritter (Ground Type)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-074": {
+    "name": "Gundam Aerial Rebuild",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-075": {
+    "name": "Rick Dias (Red)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-076": {
+    "name": "Buster Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-077": {
+    "name": "Ein's Schwalbe Graze",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-078": {
+    "name": "Gundam Pharact",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-079": {
+    "name": "Rick Dias",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-080": {
+    "name": "Nemo",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-081": {
+    "name": "Methuss",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-082": {
+    "name": "Gaelio's Schwalbe Graze",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-083": {
+    "name": "Graze Ritter (Ground Type)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-084": {
+    "name": "Lauda's Dilanza",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD02-085": {
+    "name": "Four Murasame",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD02-086": {
+    "name": "Jerid Messa",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD02-087": {
+    "name": "Orga, Crot, and Shani",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD02-088": {
+    "name": "Flit Asuno",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD02-089": {
+    "name": "Lalah Sune",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD02-090": {
+    "name": "Challia Bull (GQ)",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD02-091": {
+    "name": "Haman Karn",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD02-092": {
+    "name": "Shagia Frost",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD02-093": {
+    "name": "Olba Frost",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD02-094": {
+    "name": "Garrod Ran & Tiffa Adill",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD02-095": {
+    "name": "Lafter Frankland",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD02-096": {
+    "name": "Desil Galette",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD02-097": {
+    "name": "Kamille Bidan",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD02-098": {
+    "name": "Quattro Bajeena",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD02-099": {
+    "name": "Gaelio Bauduin",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD02-100": {
+    "name": "Dramatic Turnabout",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD02-101": {
+    "name": "Beneath the Mask",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD02-102": {
+    "name": "Mouar’s Determination",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD02-103": {
+    "name": "AGE Device",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD02-104": {
+    "name": "Turning Point of History",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD02-105": {
+    "name": "Valedictorian",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD02-106": {
+    "name": "White Wolf",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD02-107": {
+    "name": "All-Range Attack",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD02-108": {
+    "name": "That One Looks A Lot Stronger?",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD02-109": {
+    "name": "Undying Persistence",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD02-110": {
+    "name": "Awakened Power",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD02-111": {
+    "name": "Decisive Last Resort",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD02-112": {
+    "name": "Momentary Respite",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD02-113": {
+    "name": "Sisterly Care",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD02-114": {
+    "name": "It's Name is Ryusei-Go",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD02-115": {
+    "name": "Familial Devotion",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD02-116": {
+    "name": "Comrades Come First",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD02-117": {
+    "name": "A New Sign",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD02-118": {
+    "name": "Heart Set on Revenge",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD02-119": {
+    "name": "Persistent and Fortudinous",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD02-120": {
+    "name": "Aspiring Pilot",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD02-121": {
+    "name": "Dominion",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "GD02-122": {
+    "name": "Alexandria",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "GD02-123": {
+    "name": "Sodon",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "GD02-124": {
+    "name": "Diva",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "GD02-125": {
+    "name": "Gwadan",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "GD02-126": {
+    "name": "Shuji's Hideout",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "GD02-127": {
+    "name": "Freeden",
+    "color": "Purple",
+    "cardType": "Base"
+  },
+  "GD02-128": {
+    "name": "Hammerhead",
+    "color": "Purple",
+    "cardType": "Base"
+  },
+  "GD02-129": {
+    "name": "Argama",
+    "color": "White",
+    "cardType": "Base"
+  },
+  "GD02-130": {
+    "name": "Sleipnir",
+    "color": "White",
+    "cardType": "Base"
+  },
+  "GD03-001": {
+    "name": "Gundam NT-1",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-002": {
+    "name": "The-O",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-003": {
+    "name": "Messala",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-004": {
+    "name": "Hambrabi",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-005": {
+    "name": "Kshatriya Besserung",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-006": {
+    "name": "Penelope (Middle Form)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-007": {
+    "name": "Gundam NT-1 Full Armor",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-008": {
+    "name": "Bolinoak Sammahn",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-009": {
+    "name": "Palace Athene",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-010": {
+    "name": "Full Armor Unicorn Gundam (Destroy Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-011": {
+    "name": "GM Sniper II",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-012": {
+    "name": "Messala (MA Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-013": {
+    "name": "Hizack",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-014": {
+    "name": "Hizack Custom",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-015": {
+    "name": "Baund Doc",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-016": {
+    "name": "Full Armor Unicorn Gundam (Unicorn Mode)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD03-017": {
+    "name": "Kämpfer",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-018": {
+    "name": "Altron Gundam",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-019": {
+    "name": "Gundam AGE-2 Normal",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-020": {
+    "name": "Zaku Ⅱ FZ",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-021": {
+    "name": "Gundam Deathscythe Hell",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-022": {
+    "name": "Gundam Kyrios",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-023": {
+    "name": "G-Bouncer",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-024": {
+    "name": "Hy-Gogg",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-025": {
+    "name": "Gundam Sandrock Custom",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-026": {
+    "name": "Gundam Dynames",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-027": {
+    "name": "Z’Gok E",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-028": {
+    "name": "Auda's Maganac",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-029": {
+    "name": "Gundam Heavyarms Custom",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-030": {
+    "name": "Gundam Kyrios (Tail Unit Flight Mode)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-031": {
+    "name": "Gundam AGE-1 Flat",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-032": {
+    "name": "Zaku (Four Snake Eyes') [YETI] (GQ)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD03-033": {
+    "name": "Providence Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-034": {
+    "name": "GQuuuuuuX (Omega Psycommu)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-035": {
+    "name": "GFreD",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-036": {
+    "name": "Ξ Gundam (Flight Form)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-037": {
+    "name": "Bertigo",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-038": {
+    "name": "GuAIZ (Commander Type)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-039": {
+    "name": "Red Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-040": {
+    "name": "Gundam Virsago & Gundam Ashtaron",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-041": {
+    "name": "Patulia",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-042": {
+    "name": "Duel Gundam (Assault Shroud)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-043": {
+    "name": "Messer Type-F02",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-044": {
+    "name": "Daughtress Flyer",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-045": {
+    "name": "Balient",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-046": {
+    "name": "CGUE",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-047": {
+    "name": "DINN (Commander Type)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-048": {
+    "name": "GFreD",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD03-049": {
+    "name": "Gundam Exia (Trans-Am)",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-050": {
+    "name": "Gundam Barbatos Lupus",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-051": {
+    "name": "Gundam X Divider",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-052": {
+    "name": "Gundam Virtue",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-053": {
+    "name": "Gundam Gusion Rebake Full City",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-054": {
+    "name": "Zeydra",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-055": {
+    "name": "Gundam Hajiroboshi (2nd Form)",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-056": {
+    "name": "Gundam Barbatos Adapt",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-057": {
+    "name": "GN Armor (Type-E)",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-058": {
+    "name": "Farsia",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-059": {
+    "name": "Zedas R",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-060": {
+    "name": "CGS Mobile Worker (Commander Type)",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-061": {
+    "name": "Gundam Barbatos 6th Form",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-062": {
+    "name": "GX-Bit",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-063": {
+    "name": "0 Gundam",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-064": {
+    "name": "Defurse",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-065": {
+    "name": "Zedas M",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-066": {
+    "name": "Gundam Barbatos 5th Form (Ground Type)",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-067": {
+    "name": "Rouei",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-068": {
+    "name": "Gundam Hajiroboshi",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD03-069": {
+    "name": "Graham's Union Flag Custom",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-070": {
+    "name": "Freedom Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-071": {
+    "name": "Z Gundam (Biosensor)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-072": {
+    "name": "Aile Strike Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-073": {
+    "name": "Graze Ein",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-074": {
+    "name": "Tieren Taozi",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-075": {
+    "name": "Super Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-076": {
+    "name": "Freedom Gundam (METEOR)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-077": {
+    "name": "Justice Gundam (METEOR)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-078": {
+    "name": "Tieren High Mobility Type",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-079": {
+    "name": "G-Defenser",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-080": {
+    "name": "Gundam Kimaris Trooper (Trooper Mode)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-081": {
+    "name": "AEU Enact Demonstration Color",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-082": {
+    "name": "Union Flag",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-083": {
+    "name": "AEU Hellion",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD03-084": {
+    "name": "Paptimus Scirocco",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD03-085": {
+    "name": "Christina Mackenzie",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD03-086": {
+    "name": "Yazan Gable",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD03-087": {
+    "name": "Sarah Zabiarov",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD03-088": {
+    "name": "Asemu Asuno",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD03-089": {
+    "name": "Bernard Wiseman",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD03-090": {
+    "name": "Mikhail Kaminsky",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD03-091": {
+    "name": "Rau Le Creuset",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD03-092": {
+    "name": "Nyaan",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD03-093": {
+    "name": "Carris Nautilus",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD03-094": {
+    "name": "Zeheart Galette",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD03-095": {
+    "name": "Azee Gurumin",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD03-096": {
+    "name": "Jamil Neate",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD03-097": {
+    "name": "Wistario Afam",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD03-098": {
+    "name": "Graham Aker",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD03-099": {
+    "name": "Emma Sheen",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD03-100": {
+    "name": "Soma Peries",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD03-101": {
+    "name": "A Healthy Curiosity",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD03-102": {
+    "name": "Privileged Position",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD03-103": {
+    "name": "Field Directive",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD03-104": {
+    "name": "Reccoa's Shadow",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD03-105": {
+    "name": "Bridge Crew",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD03-106": {
+    "name": "M.A.V. Tactics",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD03-107": {
+    "name": "Over the River and Through the Woods",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD03-108": {
+    "name": "How Many Miles to the Battlefield?",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD03-109": {
+    "name": "Improved Technique",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD03-110": {
+    "name": "Eliminate Target",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD03-111": {
+    "name": "Infiltrator Present",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD03-112": {
+    "name": "Warped Intent",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD03-113": {
+    "name": "Human Karma",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD03-114": {
+    "name": "Look of Determination",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD03-115": {
+    "name": "Distant Reunion",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD03-116": {
+    "name": "Towards Destiny",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD03-117": {
+    "name": "Orga's Order",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD03-118": {
+    "name": "Awakened Potential",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD03-119": {
+    "name": "Awkward Approach",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD03-120": {
+    "name": "Immortal Colasour",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD03-121": {
+    "name": "Unheralded Attack",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD03-122": {
+    "name": "Veteran Tactics",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD03-123": {
+    "name": "Jupitris",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "GD03-124": {
+    "name": "Ribo Colony",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "GD03-125": {
+    "name": "Peacemillion",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "GD03-126": {
+    "name": "Cyclops Team",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "GD03-127": {
+    "name": "Jachin Due",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "GD03-128": {
+    "name": "Doritea",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "GD03-129": {
+    "name": "Hotarubi",
+    "color": "Purple",
+    "cardType": "Base"
+  },
+  "GD03-130": {
+    "name": "Downes",
+    "color": "Purple",
+    "cardType": "Base"
+  },
+  "GD03-131": {
+    "name": "Eternal",
+    "color": "White",
+    "cardType": "Base"
+  },
+  "GD03-132": {
+    "name": "Radish",
+    "color": "White",
+    "cardType": "Base"
+  },
+  "GD04-001": {
+    "name": "Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-002": {
+    "name": "Penelope (Flight Form)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-003": {
+    "name": "Victory Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-004": {
+    "name": "Psycho Gundam Mk-Ⅱ",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-005": {
+    "name": "GM III",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-006": {
+    "name": "V-Dash Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-007": {
+    "name": "Victory Gundam Hexa",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-008": {
+    "name": "Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-009": {
+    "name": "Guncannon (108) & Guncannon (109)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-010": {
+    "name": "Gaplant",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-011": {
+    "name": "Victory Gundam",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-012": {
+    "name": "Core Booster (005) & Core Booster (006)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-013": {
+    "name": "Core Fighter",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-014": {
+    "name": "Shokew",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-015": {
+    "name": "Gun EZ",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-016": {
+    "name": "Zoloat (League Militaire)",
+    "color": "Blue",
+    "cardType": "Unit"
+  },
+  "GD04-017": {
+    "name": "Zeong",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-018": {
+    "name": "Gundam Pharact",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-019": {
+    "name": "GN Armor Type-D (Trans-Am)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-020": {
+    "name": "Gundam Lfrith Ur",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-021": {
+    "name": "Gundam Lfrith Thorn",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-022": {
+    "name": "Kikeroga (MS Mode) (GQ)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-023": {
+    "name": "Gundam Kyrios (Tail Booster)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-024": {
+    "name": "Gundam Aerial Rebuild",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-025": {
+    "name": "Gundvölva",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-026": {
+    "name": "Garma's Dopp",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-027": {
+    "name": "Bigro",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-028": {
+    "name": "Zakrello",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-029": {
+    "name": "Gundam Dynames (GN Full Shield)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-030": {
+    "name": "Chuchu's Demi Trainer",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-031": {
+    "name": "Heindree",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-032": {
+    "name": "Xavier's Gyan Hakuji-Packs (GQ)",
+    "color": "Green",
+    "cardType": "Unit"
+  },
+  "GD04-033": {
+    "name": "Neo Zeong",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-034": {
+    "name": "Gundam Kyrios",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-035": {
+    "name": "Ξ Gundam",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-036": {
+    "name": "Gundam Throne Eins",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-037": {
+    "name": "Gundam Kyrios (Trans-Am)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-038": {
+    "name": "Gundam Exia",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-039": {
+    "name": "Rozen Zulu",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-040": {
+    "name": "Schuzrum-Galluss",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-041": {
+    "name": "Gundam Throne Drei",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-042": {
+    "name": "Psycho Gundam (GQ)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-043": {
+    "name": "Zssa (Sleeves)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-044": {
+    "name": "Gadeel",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-045": {
+    "name": "Gundam Throne Zwei",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-046": {
+    "name": "Gundam Dynames",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-047": {
+    "name": "Gundam Virtue",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-048": {
+    "name": "Hambrabi (GQ)",
+    "color": "Red",
+    "cardType": "Unit"
+  },
+  "GD04-049": {
+    "name": "Gundam DX",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-050": {
+    "name": "Destiny Gundam",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-051": {
+    "name": "Gundam Airmaster Burst",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-052": {
+    "name": "Gundam Leopard Destroy",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-053": {
+    "name": "Rey's Blaze Zaku Phantom",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-054": {
+    "name": "Gundam Virtue (Trans-Am)",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-055": {
+    "name": "Heine's Gouf Ignited",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-056": {
+    "name": "Sword Impulse Gundam",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-057": {
+    "name": "Gundam Nadleeh",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-058": {
+    "name": "Jamil's Gundam X",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-059": {
+    "name": "Daughtress High Mobility Command Wise Wallaby",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-060": {
+    "name": "Esperansa",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-061": {
+    "name": "G-Falcon",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-062": {
+    "name": "Lunamaria's Gunner Zaku Warrior",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-063": {
+    "name": "GN Armor Type-E",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-064": {
+    "name": "Gundam Exia",
+    "color": "Purple",
+    "cardType": "Unit"
+  },
+  "GD04-065": {
+    "name": "Unicorn Gundam 02 Banshee Norn (Destroy Mode)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-066": {
+    "name": "Unicorn Gundam (Awakened)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-067": {
+    "name": "∀ Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-068": {
+    "name": "Silver Bullet",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-069": {
+    "name": "∀ Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-070": {
+    "name": "Al-Saachez's AEU Enact Custom Moralia Development Experiment Type",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-071": {
+    "name": "Graham's Union Flag Custom Ⅱ (GN Flag)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-072": {
+    "name": "Unicorn Gundam 02 Banshee Norn (Unicorn Mode)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-073": {
+    "name": "∀ Gundam",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-074": {
+    "name": "Kapool",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-075": {
+    "name": "GN-X",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-076": {
+    "name": "Hipheavy",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-077": {
+    "name": "Flat (Militia)",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-078": {
+    "name": "Borjarnon",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-079": {
+    "name": "Agrissa",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-080": {
+    "name": "Alvatore",
+    "color": "White",
+    "cardType": "Unit"
+  },
+  "GD04-081": {
+    "name": "Üso Ewin",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD04-082": {
+    "name": "Rosamia Badam",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD04-083": {
+    "name": "Marbet Fingerhat",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD04-084": {
+    "name": "Sleggar Law",
+    "color": "Blue",
+    "cardType": "Pilot"
+  },
+  "GD04-085": {
+    "name": "Suletta Mercury",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD04-086": {
+    "name": "Garma Zabi",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD04-087": {
+    "name": "Elan Ceres (Enhanced Person Number 5)",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD04-088": {
+    "name": "Tokwan",
+    "color": "Green",
+    "cardType": "Pilot"
+  },
+  "GD04-089": {
+    "name": "Nena Trinity",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD04-090": {
+    "name": "Hallelujah Haptism",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD04-091": {
+    "name": "Deux Murasame",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD04-092": {
+    "name": "Michael Trinity",
+    "color": "Red",
+    "cardType": "Pilot"
+  },
+  "GD04-093": {
+    "name": "Rey Za Burrel",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD04-094": {
+    "name": "Pala Sys",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD04-095": {
+    "name": "Lunamaria Hawke",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD04-096": {
+    "name": "Ennil El",
+    "color": "Purple",
+    "cardType": "Pilot"
+  },
+  "GD04-097": {
+    "name": "Loran Cehack",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD04-098": {
+    "name": "Riddhe Marcenas",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD04-099": {
+    "name": "Ali al-Saachez",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD04-100": {
+    "name": "Sochie Heim",
+    "color": "White",
+    "cardType": "Pilot"
+  },
+  "GD04-101": {
+    "name": "Kindhearted",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD04-102": {
+    "name": "Moment of Rest",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD04-103": {
+    "name": "Spiritual Support",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD04-104": {
+    "name": "Shrike Team's Bulwark",
+    "color": "Blue",
+    "cardType": "Command"
+  },
+  "GD04-105": {
+    "name": "Encounter",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD04-106": {
+    "name": "Indiscriminate Violence",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD04-107": {
+    "name": "Destined Battle",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD04-108": {
+    "name": "Witches from Earth",
+    "color": "Green",
+    "cardType": "Command"
+  },
+  "GD04-109": {
+    "name": "Overwhelming Pressure",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD04-110": {
+    "name": "Financier",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD04-111": {
+    "name": "Trinity",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD04-112": {
+    "name": "Inspector",
+    "color": "Red",
+    "cardType": "Command"
+  },
+  "GD04-113": {
+    "name": "Damage Control",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD04-114": {
+    "name": "Reformationist",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD04-115": {
+    "name": "Backup",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD04-116": {
+    "name": "Reliable Big Brother",
+    "color": "Purple",
+    "cardType": "Command"
+  },
+  "GD04-117": {
+    "name": "Graceful Demeanor",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD04-118": {
+    "name": "World Distortion",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD04-119": {
+    "name": "Fighting Alone",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD04-120": {
+    "name": "Machine Doll Squad",
+    "color": "White",
+    "cardType": "Command"
+  },
+  "GD04-121": {
+    "name": "Reineforce Jr.",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "GD04-122": {
+    "name": "Jaburo",
+    "color": "Blue",
+    "cardType": "Base"
+  },
+  "GD04-123": {
+    "name": "A Baoa Qu",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "GD04-124": {
+    "name": "9th Tactical Testing Sector",
+    "color": "Green",
+    "cardType": "Base"
+  },
+  "GD04-125": {
+    "name": "Trinity Warship",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "GD04-126": {
+    "name": "Izuma Colony",
+    "color": "Red",
+    "cardType": "Base"
+  },
+  "GD04-127": {
+    "name": "Freeden Ⅱ",
+    "color": "Purple",
+    "cardType": "Base"
+  },
+  "GD04-128": {
+    "name": "Armory One",
+    "color": "Purple",
+    "cardType": "Base"
+  },
+  "GD04-129": {
+    "name": "Willgem",
+    "color": "White",
+    "cardType": "Base"
+  },
+  "GD04-130": {
+    "name": "Industrial 7",
+    "color": "White",
+    "cardType": "Base"
+  }
+}
