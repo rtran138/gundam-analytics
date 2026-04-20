@@ -449,7 +449,13 @@ elif page == "Card Analysis":
         combo_counts[c] = combo_counts.get(c, 0) + 1
     color_combos = ["All"] + sorted(combo_counts, key=lambda c: -combo_counts[c])
 
-    f1, f2, f3, f4 = st.columns(4)
+    all_major_events = sorted(
+        {(d["event"], d["date"]) for d in raw if d.get("event_type") == "Large Official Event"},
+        key=lambda x: x[1],
+    )
+    ev_labels = {f"{date} — {event}": event for event, date in all_major_events}
+
+    f1, f2, f3, f4, f5 = st.columns(5)
     with f1:
         preselect = st.session_state.pop("preselect_combo", None)
         default_combo_idx = color_combos.index(preselect) if preselect and preselect in color_combos else 0
@@ -461,8 +467,16 @@ elif page == "Card Analysis":
             default=[t for t in event_types if t == "Large Official Event"],
         )
     with f3:
-        sort_by = st.selectbox("Sort by", ["Rank Δ", "Appearance %", "Decks", "Avg Copies"])
+        sel_ev_labels = st.multiselect(
+            "Events to include",
+            options=list(ev_labels.keys()),
+            default=list(ev_labels.keys()),
+            key="placement_events",
+        )
+        sel_events = {ev_labels[l] for l in sel_ev_labels}
     with f4:
+        sort_by = st.selectbox("Sort by", ["Rank Δ", "Appearance %", "Decks", "Avg Copies"])
+    with f5:
         top_n = st.slider("Top N cards", 10, 50, 20)
 
     hide_staples = st.toggle("Hide staples (avg ≥ 3.5 copies)", value=False)
@@ -534,12 +548,15 @@ elif page == "Card Analysis":
     excluded_ids = set(st.session_state["excluded_card_ids"])
 
     # ── Scope decks to selected combo + event types ───────────────────────────
+    def in_sel_events(d):
+        return not sel_events or d.get("event") in sel_events
+
     if selected_combo == "All":
-        scoped_decks = [d for d in raw if d["event_type"] in selected_event_types]
+        scoped_decks = [d for d in raw if d["event_type"] in selected_event_types and in_sel_events(d)]
     else:
         scoped_decks = [
             deck for deck, combo in deck_combos
-            if combo == selected_combo and deck["event_type"] in selected_event_types
+            if combo == selected_combo and deck["event_type"] in selected_event_types and in_sel_events(deck)
         ]
     total_decks = len(scoped_decks)
 
@@ -652,22 +669,9 @@ elif page == "Card Analysis":
     with col_l:
         st.subheader("Placement Distribution")
         st.caption("Large Official Events only")
-        all_major_events = sorted(
-            {(d["event"], d["date"]) for d in raw if d.get("event_type") == "Large Official Event"},
-            key=lambda x: x[1],
-        )
-        ev_labels = {f"{date} — {event}": event for event, date in all_major_events}
-        sel_ev_labels = st.multiselect(
-            "Events to include",
-            options=list(ev_labels.keys()),
-            default=list(ev_labels.keys()),
-            key="placement_events",
-        )
-        sel_events = {ev_labels[l] for l in sel_ev_labels}
         major_decks = [
             d for d in scoped_decks
             if d.get("event_type") == "Large Official Event"
-            and (not sel_events or d.get("event") in sel_events)
         ]
         place_counts = {b: 0 for b in BUCKET_ORDER}
         for deck in major_decks:
