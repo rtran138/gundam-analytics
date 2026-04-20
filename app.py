@@ -162,11 +162,17 @@ with st.sidebar:
         st.caption(f"Last updated: {analyzed_raw['meta']['last_updated']}")
 
     st.divider()
+    PAGE_OPTIONS = ["Meta Overview", "Card Analysis"]
+    if "nav_page" not in st.session_state:
+        st.session_state["nav_page"] = "Meta Overview"
     page = st.radio(
         "View",
-        ["Meta Overview", "Card Analysis"],
+        PAGE_OPTIONS,
+        index=PAGE_OPTIONS.index(st.session_state["nav_page"]),
         label_visibility="collapsed",
+        key="nav_radio",
     )
+    st.session_state["nav_page"] = page
 
 # ── Guard: check data exists ──────────────────────────────────────────────────
 
@@ -265,24 +271,35 @@ if page == "Meta Overview":
     )
     st.dataframe(display_arch, use_container_width=True, hide_index=True)
 
-    # ── Archetype Signature Cards ─────────────────────────────────────────────
+    # ── Popular Archetypes ────────────────────────────────────────────────────
     if arch_lr_cards:
         st.divider()
-        st.subheader("Archetype Signature Cards")
+        st.subheader("Popular Archetypes")
 
-        # Build display rows using grouped archetypes
-        # For each grouped archetype, find a card ID from any of its members
+        # Map each archetype (and group members) to its most common color combo
+        arch_combo_counts: dict[str, dict[str, int]] = {}
+        for deck in raw:
+            a = deck.get("archetype", "")
+            display_name = member_to_group.get(a, a)
+            combo = deck_color_combo(deck, card_names)
+            if display_name not in arch_combo_counts:
+                arch_combo_counts[display_name] = {}
+            arch_combo_counts[display_name][combo] = arch_combo_counts[display_name].get(combo, 0) + 1
+        arch_primary_combo = {
+            a: max(combos, key=combos.get)
+            for a, combos in arch_combo_counts.items()
+        }
+
+        # Build sorted sig_items
         sig_items = []
         seen = set()
         for a in grouped_arch.values():
             arch_name = a["archetype"]
             if arch_name in seen:
                 continue
-            # Find card ID: check direct match, then check if it's a group and use first member's card
             card_id = arch_lr_cards.get(arch_name)
             if not card_id:
-                members = arch_groups.get(arch_name, [])
-                for m in members:
+                for m in arch_groups.get(arch_name, []):
                     card_id = arch_lr_cards.get(m)
                     if card_id:
                         break
@@ -293,31 +310,33 @@ if page == "Meta Overview":
                 "archetype": arch_name,
                 "card_id":   card_id,
                 "pct":       round(a["meta_share"] * 100, 1),
-                "decks":     a["deck_count"],
+                "combo":     arch_primary_combo.get(arch_name, "All"),
             })
         sig_items.sort(key=lambda x: -x["pct"])
 
-        # Render as a flex grid of cards with overlaid white text
-        cards_html = ""
-        for item in sig_items:
-            img_url = CDN_URL.format(card_id=item["card_id"])
-            cards_html += f"""
-            <div style="position:relative;width:140px;flex-shrink:0;">
-              <img src="{img_url}"
-                   style="width:100%;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.5);display:block;">
-              <div style="position:absolute;bottom:0;left:0;right:0;
-                          background:linear-gradient(transparent,rgba(0,0,0,0.82));
-                          border-radius:0 0 8px 8px;padding:18px 4px 6px;text-align:center;">
-                <div style="color:white;font-size:22px;font-weight:700;line-height:1.1;">{item['pct']}%</div>
-                <div style="color:#ddd;font-size:11px;margin-top:2px;">{item['archetype']}</div>
-              </div>
-            </div>"""
-
-        st.markdown(
-            f'<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start;">'
-            f'{cards_html}</div>',
-            unsafe_allow_html=True,
-        )
+        # Render as 5-column grid; each card has image overlay + navigate button
+        CARD_COLS = 5
+        for row_start in range(0, len(sig_items), CARD_COLS):
+            row = sig_items[row_start:row_start + CARD_COLS]
+            cols = st.columns(CARD_COLS)
+            for col, item in zip(cols, row):
+                with col:
+                    img_url = CDN_URL.format(card_id=item["card_id"])
+                    st.markdown(
+                        f'<div style="position:relative;">'
+                        f'<img src="{img_url}" style="width:100%;border-radius:8px;display:block;">'
+                        f'<div style="position:absolute;bottom:0;left:0;right:0;'
+                        f'background:linear-gradient(transparent,rgba(0,0,0,0.82));'
+                        f'border-radius:0 0 8px 8px;padding:14px 4px 4px;text-align:center;">'
+                        f'<div style="color:white;font-size:18px;font-weight:700;">{item["pct"]}%</div>'
+                        f'<div style="color:#ddd;font-size:10px;">{item["archetype"]}</div>'
+                        f'</div></div>',
+                        unsafe_allow_html=True,
+                    )
+                    if st.button("Analyze →", key=f"arch_nav_{item['archetype']}", use_container_width=True):
+                        st.session_state["nav_page"] = "Card Analysis"
+                        st.session_state["preselect_combo"] = item["combo"]
+                        st.rerun()
 
     # ── Color Combination Breakdown ───────────────────────────────────────────
     st.divider()
@@ -416,7 +435,9 @@ elif page == "Card Analysis":
 
     f1, f2, f3, f4 = st.columns(4)
     with f1:
-        selected_combo = st.selectbox("Color combination", color_combos)
+        preselect = st.session_state.pop("preselect_combo", None)
+        default_combo_idx = color_combos.index(preselect) if preselect and preselect in color_combos else 0
+        selected_combo = st.selectbox("Color combination", color_combos, index=default_combo_idx)
     with f2:
         event_types = sorted({d["event_type"] for d in raw if d["event_type"]})
         selected_event_types = st.multiselect(
