@@ -84,6 +84,27 @@ def short_name(card_id: str, card_names: dict, max_len: int = 15) -> str:
     return name if len(name) <= max_len else name[:max_len - 1] + "…"
 
 
+def placing_to_rank(placing: str) -> float | None:
+    """Convert a placing string to a numeric rank (lower = better). Returns None if unparseable."""
+    p = (placing or "").strip()
+    first = p.split()[0].lower() if p else ""
+    ordinals = {
+        "1st": 1, "2nd": 2, "3rd": 3, "4th": 4, "5th": 5,
+        "6th": 6, "7th": 7, "8th": 8, "9th": 9, "10th": 10,
+        "11th": 11, "12th": 12, "13th": 13, "14th": 14,
+        "15th": 15, "16th": 16, "17th": 17, "18th": 18,
+        "19th": 19, "20th": 20, "32nd": 32,
+    }
+    if first in ordinals:
+        return float(ordinals[first])
+    buckets = {"top 4": 3.0, "top 8": 6.0, "top 16": 12.0, "top 32": 24.0}
+    pl = p.lower()
+    for key, val in buckets.items():
+        if pl.startswith(key):
+            return val
+    return None
+
+
 
 def deck_color_combo(deck: dict, card_names: dict) -> str:
     """Derive color combination from the cards in a deck."""
@@ -383,7 +404,7 @@ if page == "Meta Overview":
 elif page == "Card Analysis":
     st.header("Card Analysis")
 
-    SIGNAL_COLORS = {"++": "#2ecc71", "+": "#a8d8a8", "-": "#f4a460", "--": "#e74c3c"}
+    SIGNAL_COLORS = {"++": "#2ecc71", "+": "#a8d8a8", "-": "#f4a460", "--": "#e74c3c", "?": "#888888"}
     PTS_MAP = {"1st": 13, "2nd": 8, "3rd": 5, "Top 4": 3, "Top 8": 2, "Top 16": 1, "Top 32": 1}
 
     # ── Filters ───────────────────────────────────────────────────────────────
@@ -473,6 +494,34 @@ elif page == "Card Analysis":
             card_counter[cid]["total"] += card["quantity"]
             card_counter[cid]["score"] += score
 
+    # Pre-compute numeric rank for every scoped deck
+    deck_ranks = {
+        id(d): placing_to_rank(d.get("placing_clean") or d.get("placing", ""))
+        for d in scoped_decks
+    }
+    # Build set of deck ids per card for fast delta computation
+    card_deck_ids: dict[str, set] = {}
+    for deck in scoped_decks:
+        for card in deck["cards"]:
+            cid = card["card_id"]
+            if cid not in card_deck_ids:
+                card_deck_ids[cid] = set()
+            card_deck_ids[cid].add(id(deck))
+
+    all_ranked = [(id(d), r) for d, r in zip(scoped_decks, deck_ranks.values()) if r is not None]
+    all_ranks_vals = [r for _, r in all_ranked]
+    global_avg = sum(all_ranks_vals) / len(all_ranks_vals) if all_ranks_vals else 0
+
+    def rank_delta(cid: str) -> float | None:
+        with_ids = card_deck_ids.get(cid, set())
+        with_ranks = [r for did, r in all_ranked if did in with_ids]
+        without_ranks = [r for did, r in all_ranked if did not in with_ids]
+        if not with_ranks or not without_ranks:
+            return None
+        avg_with    = sum(with_ranks) / len(with_ranks)
+        avg_without = sum(without_ranks) / len(without_ranks)
+        return round(avg_without - avg_with, 2)  # positive = card improves placing
+
     denom = total_decks or 1
     scoped_df = pd.DataFrame([
         {
@@ -481,6 +530,7 @@ elif page == "Card Analysis":
             "Appearance %":   round(v["count"] / denom * 100, 1),
             "Weighted Score": v["score"],
             "Avg Copies":     round(v["total"] / v["count"], 2),
+            "Rank Δ":         rank_delta(cid),
         }
         for cid, v in card_counter.items()
     ]).sort_values("Weighted Score", ascending=False).reset_index(drop=True)
@@ -490,19 +540,14 @@ elif page == "Card Analysis":
         filtered_df = filtered_df[filtered_df["Avg Copies"] < 3.5]
     df_display = filtered_df.sort_values(sort_by, ascending=False).head(top_n).reset_index(drop=True)
 
-    # Placement signal
-    df_display["Score/Deck"] = (df_display["Weighted Score"] / df_display["Decks"].clip(lower=1)).round(2)
-    q25, median, q75 = (
-        df_display["Score/Deck"].quantile(0.25),
-        df_display["Score/Deck"].median(),
-        df_display["Score/Deck"].quantile(0.75),
-    )
-    def placement_signal(spd: float) -> str:
-        if spd >= q75:    return "++"
-        if spd >= median: return "+"
-        if spd >= q25:    return "-"
+    # Signal based on Rank Δ (positive delta = card improves avg placing)
+    def placement_signal(delta) -> str:
+        if delta is None or pd.isna(delta): return "?"
+        if delta >= 2:   return "++"
+        if delta >= 0:   return "+"
+        if delta >= -2:  return "-"
         return "--"
-    df_display["Signal"] = df_display["Score/Deck"].apply(placement_signal)
+    df_display["Signal"] = df_display["Rank Δ"].apply(placement_signal)
     df_display["Label"] = df_display["Card ID"].apply(lambda cid: short_name(cid, card_names))
     dup_mask = df_display["Label"].duplicated(keep=False)
     df_display.loc[dup_mask, "Label"] = (
@@ -571,7 +616,7 @@ elif page == "Card Analysis":
 
     # ── Card Table ────────────────────────────────────────────────────────────
     st.divider()
-    table_df = df_display[["Card ID", "Signal", "Decks", "Appearance %", "Weighted Score", "Score/Deck", "Avg Copies"]].copy()
+    table_df = df_display[["Card ID", "Signal", "Rank Δ", "Decks", "Appearance %", "Weighted Score", "Avg Copies"]].copy()
     table_df.insert(1, "Name",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("name", "—")))
     table_df.insert(2, "Color", table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("color", "—")))
     table_df.insert(3, "Type",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("cardType", "—")))
