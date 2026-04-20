@@ -303,7 +303,7 @@ if page == "Meta Overview":
     st.subheader("Color Combination Breakdown")
 
     combo_stats: dict[str, dict] = {}
-    PLACEMENT_POINTS = {"1st": 7, "2nd": 6, "3rd": 5, "Top 4": 4, "Top 8": 3, "Top 16": 2, "Top 32": 1}
+    PLACEMENT_POINTS = {"1st": 13, "2nd": 8, "3rd": 5, "Top 4": 3, "Top 8": 2, "Top 16": 1, "Top 32": 1}
     for deck in raw:
         combo = deck_color_combo(deck, card_names)
         if combo not in combo_stats:
@@ -384,7 +384,7 @@ elif page == "Card Analysis":
     st.header("Card Analysis")
 
     SIGNAL_COLORS = {"++": "#2ecc71", "+": "#a8d8a8", "-": "#f4a460", "--": "#e74c3c"}
-    PTS_MAP = {"1st": 7, "2nd": 6, "3rd": 5, "Top 4": 4, "Top 8": 3, "Top 16": 2, "Top 32": 1}
+    PTS_MAP = {"1st": 13, "2nd": 8, "3rd": 5, "Top 4": 3, "Top 8": 2, "Top 16": 1, "Top 32": 1}
 
     # ── Filters ───────────────────────────────────────────────────────────────
     deck_combos = [(deck, deck_color_combo(deck, card_names)) for deck in raw]
