@@ -697,17 +697,21 @@ elif page == "Archetype Deep Dive":
         fig.update_layout(coloraxis_showscale=False, margin=dict(t=10, b=60))
         st.plotly_chart(fig, use_container_width=True)
 
-    # Card frequency within this archetype
+    # Top 20 cards by weighted score within this color combo
     with col_r:
-        st.subheader("Most-Played Cards in Color Combo")
+        st.subheader("Top Cards by Weighted Score")
         card_counter: dict[str, dict] = {}
+        pts_map = {"1st": 7, "2nd": 6, "3rd": 5, "Top 4": 4, "Top 8": 3, "Top 16": 2, "Top 32": 1}
         for deck in arch_decks:
+            p = deck.get("placing_clean") or deck.get("placing", "")
+            score = pts_map.get(p, 0)
             for card in deck["cards"]:
                 cid = card["card_id"]
                 if cid not in card_counter:
-                    card_counter[cid] = {"count": 0, "total": 0}
+                    card_counter[cid] = {"count": 0, "total": 0, "score": 0}
                 card_counter[cid]["count"] += 1
                 card_counter[cid]["total"] += card["quantity"]
+                card_counter[cid]["score"] += score
 
         total_arch_decks = len(arch_decks) or 1
         arch_card_df = pd.DataFrame([
@@ -718,12 +722,13 @@ elif page == "Archetype Deep Dive":
                 "Color": card_names.get(cid, {}).get("color", "—"),
                 "Decks": v["count"],
                 "Inclusion %": round(v["count"] / total_arch_decks * 100, 1),
+                "Weighted Score": v["score"],
                 "Avg Copies": round(v["total"] / v["count"], 2),
             }
             for cid, v in card_counter.items()
-        ]).sort_values("Decks", ascending=False).head(20).reset_index(drop=True)
+        ]).sort_values("Weighted Score", ascending=False).head(20).reset_index(drop=True)
 
-        # Deduplicate labels: append card ID when two cards share the same truncated name
+        # Deduplicate labels
         dup_labels = arch_card_df["Label"].duplicated(keep=False)
         arch_card_df.loc[dup_labels, "Label"] = (
             arch_card_df.loc[dup_labels, "Label"] + " ("
@@ -732,12 +737,16 @@ elif page == "Archetype Deep Dive":
         arch_card_df.index += 1
 
         fig2 = px.bar(
-            arch_card_df.head(15), x="Label", y="Inclusion %",
-            color="Avg Copies", color_continuous_scale="Oranges",
-            text="Inclusion %",
+            arch_card_df.head(20), x="Label", y="Weighted Score",
+            color="Weighted Score", color_continuous_scale="Blues",
+            text="Weighted Score",
         )
-        fig2.update_traces(textposition="outside", texttemplate="%{text}%")
-        fig2.update_layout(xaxis_tickangle=-45, margin=dict(t=10, b=100))
+        fig2.update_traces(textposition="outside", texttemplate="%{text}")
+        fig2.update_layout(
+            xaxis_tickangle=-45,
+            coloraxis_showscale=False,
+            margin=dict(t=10, b=100),
+        )
         st.plotly_chart(fig2, use_container_width=True)
 
     st.subheader("Card Detail Table")
