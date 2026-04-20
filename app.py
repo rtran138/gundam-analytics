@@ -461,7 +461,7 @@ elif page == "Card Analysis":
             default=[t for t in event_types if t == "Large Official Event"],
         )
     with f3:
-        sort_by = st.selectbox("Sort by", ["Weighted Score", "Appearance %", "Decks", "Avg Copies"])
+        sort_by = st.selectbox("Sort by", ["Rank Δ", "Appearance %", "Decks", "Avg Copies"])
     with f4:
         top_n = st.slider("Top N cards", 10, 50, 20)
 
@@ -608,7 +608,7 @@ elif page == "Card Analysis":
             "Rank Δ":         rank_delta(cid),
         }
         for cid, v in card_counter.items()
-    ]).sort_values("Weighted Score", ascending=False).reset_index(drop=True)
+    ]).reset_index(drop=True)
 
     universal_ids = {cid for cid, v in card_counter.items() if v["count"] >= total_decks}
 
@@ -684,22 +684,28 @@ elif page == "Card Analysis":
         st.plotly_chart(fig_place, use_container_width=True)
 
     with col_r:
-        st.subheader(f"Top {top_n} Cards by {sort_by}")
+        st.subheader("Top 20 Cards by Rank Impact")
+        chart_df = (
+            df_display[df_display["Rank Δ"].notna()]
+            .sort_values("Rank Δ", ascending=False)
+            .head(20)
+        )
         fig_cards = px.bar(
-            df_display, x="Label", y=sort_by,
+            chart_df, x="Label", y="Rank Δ",
             color="Signal", color_discrete_map=SIGNAL_COLORS,
-            text=sort_by, category_orders={"Signal": ["++", "+", "-", "--"]},
+            text="Rank Δ", category_orders={"Signal": ["++", "+", "-", "--"]},
         )
         fig_cards.update_traces(textposition="outside", texttemplate="%{text}")
         fig_cards.update_layout(
             xaxis_tickangle=-45, margin=dict(t=20, b=120),
-            yaxis_title=sort_by, legend_title="Signal",
+            yaxis_title="Avg Placement Improvement (lower rank = better)",
+            legend_title="Signal",
         )
         st.plotly_chart(fig_cards, use_container_width=True)
 
     # ── Card Table ────────────────────────────────────────────────────────────
     st.divider()
-    table_df = df_display[["Card ID", "Signal", "Rank Δ", "Decks", "Appearance %", "Weighted Score", "Avg Copies"]].copy()
+    table_df = df_display[["Card ID", "Signal", "Rank Δ", "Decks", "Appearance %", "Avg Copies"]].copy()
     table_df.insert(1, "Name",  table_df["Card ID"].apply(lambda cid: alias_display_names.get(cid) or card_names.get(cid, {}).get("name", "—")))
     table_df.insert(2, "Color", table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("color", "—")))
     table_df.insert(3, "Type",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("cardType", "—")))
@@ -750,7 +756,7 @@ elif page == "Card Analysis":
                 st.markdown(f"**{name}**  \n`{cid}`")
                 st.markdown(
                     f"Play: **{card_row['Appearance %']}%**  \n"
-                    f"Avg: **{card_row['Avg Copies']}** &nbsp; Score: **{card_row['Weighted Score']}**"
+                    f"Avg: **{card_row['Avg Copies']}** &nbsp; Rank Δ: **{card_row['Rank Δ'] if pd.notna(card_row['Rank Δ']) else 'N/A'}**"
                 )
 
     # ── Sample Deck Lists (only when a combo is selected) ─────────────────────
