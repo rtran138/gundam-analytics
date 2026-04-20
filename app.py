@@ -143,7 +143,7 @@ with st.sidebar:
     st.divider()
     page = st.radio(
         "View",
-        ["Meta Overview", "Card Stats", "Archetype Deep Dive"],
+        ["Meta Overview", "Card Analysis"],
         label_visibility="collapsed",
     )
 
@@ -380,33 +380,39 @@ if page == "Meta Overview":
 # PAGE 2 — CARD STATS
 # ══════════════════════════════════════════════════════════════════════════════
 
-elif page == "Card Stats":
-    st.header("Card Stats")
+elif page == "Card Analysis":
+    st.header("Card Analysis")
 
-    # Filters
-    f1, f2, f3 = st.columns(3)
+    SIGNAL_COLORS = {"++": "#2ecc71", "+": "#a8d8a8", "-": "#f4a460", "--": "#e74c3c"}
+    PTS_MAP = {"1st": 7, "2nd": 6, "3rd": 5, "Top 4": 4, "Top 8": 3, "Top 16": 2, "Top 32": 1}
+
+    # ── Filters ───────────────────────────────────────────────────────────────
+    deck_combos = [(deck, deck_color_combo(deck, card_names)) for deck in raw]
+    combo_counts = {}
+    for _, c in deck_combos:
+        combo_counts[c] = combo_counts.get(c, 0) + 1
+    color_combos = ["All"] + sorted(combo_counts, key=lambda c: -combo_counts[c])
+
+    f1, f2, f3, f4 = st.columns(4)
     with f1:
-        sort_by = st.selectbox("Sort by", ["Weighted Score", "Appearance %", "Decks", "Avg Copies"])
+        selected_combo = st.selectbox("Color combination", color_combos)
     with f2:
-        top_n = st.slider("Show top N cards", 10, 50, 20)
-    with f3:
         event_types = sorted({d["event_type"] for d in raw if d["event_type"]})
-        selected_events = st.multiselect("Filter by event type", event_types, default=event_types)
+        selected_event_types = st.multiselect("Event type", event_types, default=event_types)
+    with f3:
+        sort_by = st.selectbox("Sort by", ["Weighted Score", "Appearance %", "Decks", "Avg Copies"])
+    with f4:
+        top_n = st.slider("Top N cards", 10, 50, 20)
 
-    hide_staples = st.toggle(
-        "Hide staples (avg ≥ 3.5 copies) — show impactful tech cards",
-        value=False,
-    )
+    hide_staples = st.toggle("Hide staples (avg ≥ 3.5 copies)", value=False)
 
-    # Card exclusion list
     EXCLUSIONS_FILE = Path("assets/card_exclusions.json")
     if "excluded_card_ids" not in st.session_state:
-        if EXCLUSIONS_FILE.exists():
-            st.session_state["excluded_card_ids"] = json.loads(EXCLUSIONS_FILE.read_text(encoding="utf-8"))
-        else:
-            st.session_state["excluded_card_ids"] = []
-
-    with st.expander("Exclude specific cards from charts"):
+        st.session_state["excluded_card_ids"] = (
+            json.loads(EXCLUSIONS_FILE.read_text(encoding="utf-8"))
+            if EXCLUSIONS_FILE.exists() else []
+        )
+    with st.expander("Exclude specific cards"):
         all_card_options = sorted(
             {cid: card_names.get(cid, {}).get("name", cid) for cid in cards_data}.items(),
             key=lambda x: x[1],
@@ -418,159 +424,174 @@ elif page == "Card Stats":
             default=st.session_state["excluded_card_ids"],
             key="excluded_card_ids_widget",
         )
-        c_save, c_clear = st.columns(2)
-        with c_save:
+        cs1, cs2 = st.columns(2)
+        with cs1:
             if st.button("Save exclusions", use_container_width=True):
                 st.session_state["excluded_card_ids"] = excluded
                 EXCLUSIONS_FILE.write_text(json.dumps(excluded, indent=2), encoding="utf-8")
                 st.success("Saved.")
-        with c_clear:
+        with cs2:
             if st.button("Clear all", use_container_width=True):
                 st.session_state["excluded_card_ids"] = []
                 EXCLUSIONS_FILE.write_text("[]", encoding="utf-8")
                 st.rerun()
-
     excluded_ids = set(st.session_state["excluded_card_ids"])
 
-    # Re-compute if event filter is active
-    if set(selected_events) != set(event_types):
-        filtered_raw = [d for d in raw if d["event_type"] in selected_events]
-        total_filtered = len(filtered_raw)
-        card_counts: dict[str, dict] = {}
-        for deck in filtered_raw:
-            clean = deck.get("placing_clean") or deck["placing"]
-            for card in deck["cards"]:
-                cid = card["card_id"]
-                if cid not in card_counts:
-                    card_counts[cid] = {"deck_count": 0, "total_copies": 0, "score": 0}
-                card_counts[cid]["deck_count"] += 1
-                card_counts[cid]["total_copies"] += card["quantity"]
-                pts = {"1st": 7, "2nd": 6, "3rd": 5, "Top 4": 4, "Top 8": 3, "Top 16": 2, "Top 32": 1}
-                card_counts[cid]["score"] += pts.get(clean, 0)
-        rows = [
-            {
-                "Card ID": cid,
-                "Decks": v["deck_count"],
-                "Appearance %": round(v["deck_count"] / total_filtered * 100, 1),
-                "Weighted Score": v["score"],
-                "Avg Copies": round(v["total_copies"] / v["deck_count"], 2),
-                "Top Archetypes": "",
-            }
-            for cid, v in card_counts.items()
-        ]
-        df = pd.DataFrame(rows).sort_values("Weighted Score", ascending=False).reset_index(drop=True)
+    # ── Scope decks to selected combo + event types ───────────────────────────
+    if selected_combo == "All":
+        scoped_decks = [d for d in raw if d["event_type"] in selected_event_types]
     else:
-        df = cards_df()
+        scoped_decks = [
+            deck for deck, combo in deck_combos
+            if combo == selected_combo and deck["event_type"] in selected_event_types
+        ]
+    total_decks = len(scoped_decks)
 
-    filtered_df = df[~df["Card ID"].isin(excluded_ids)]
+    # ── Metrics (only when a combo is selected) ───────────────────────────────
+    if selected_combo != "All":
+        top3 = sum(1 for d in scoped_decks if (d.get("placing_clean") or d.get("placing", "")) in ("1st", "2nd", "3rd"))
+        meta_share = total_decks / meta["total_decks"] * 100 if meta["total_decks"] else 0
+        conv = top3 / total_decks * 100 if total_decks else 0
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Total Decks", total_decks)
+        m2.metric("Meta Share", f"{meta_share:.1f}%")
+        m3.metric("Top-3 Finishes", top3)
+        m4.metric("Top-3 Rate", f"{conv:.1f}%")
+
+    st.divider()
+
+    # ── Build card stats from scoped decks ────────────────────────────────────
+    card_counter: dict[str, dict] = {}
+    for deck in scoped_decks:
+        p = deck.get("placing_clean") or deck.get("placing", "")
+        score = PTS_MAP.get(p, 0)
+        for card in deck["cards"]:
+            cid = card["card_id"]
+            if cid not in card_counter:
+                card_counter[cid] = {"count": 0, "total": 0, "score": 0}
+            card_counter[cid]["count"] += 1
+            card_counter[cid]["total"] += card["quantity"]
+            card_counter[cid]["score"] += score
+
+    denom = total_decks or 1
+    scoped_df = pd.DataFrame([
+        {
+            "Card ID":        cid,
+            "Decks":          v["count"],
+            "Appearance %":   round(v["count"] / denom * 100, 1),
+            "Weighted Score": v["score"],
+            "Avg Copies":     round(v["total"] / v["count"], 2),
+        }
+        for cid, v in card_counter.items()
+    ]).sort_values("Weighted Score", ascending=False).reset_index(drop=True)
+
+    filtered_df = scoped_df[~scoped_df["Card ID"].isin(excluded_ids)]
     if hide_staples:
         filtered_df = filtered_df[filtered_df["Avg Copies"] < 3.5]
     df_display = filtered_df.sort_values(sort_by, ascending=False).head(top_n).reset_index(drop=True)
 
-    # Placement signal: score-per-deck compared to quartiles of the displayed set
+    # Placement signal
     df_display["Score/Deck"] = (df_display["Weighted Score"] / df_display["Decks"].clip(lower=1)).round(2)
-    q25 = df_display["Score/Deck"].quantile(0.25)
-    q75 = df_display["Score/Deck"].quantile(0.75)
-    median = df_display["Score/Deck"].median()
+    q25, median, q75 = (
+        df_display["Score/Deck"].quantile(0.25),
+        df_display["Score/Deck"].median(),
+        df_display["Score/Deck"].quantile(0.75),
+    )
     def placement_signal(spd: float) -> str:
-        if spd >= q75:   return "++"
+        if spd >= q75:    return "++"
         if spd >= median: return "+"
-        if spd >= q25:   return "-"
+        if spd >= q25:    return "-"
         return "--"
     df_display["Signal"] = df_display["Score/Deck"].apply(placement_signal)
-
     df_display["Label"] = df_display["Card ID"].apply(lambda cid: short_name(cid, card_names))
     dup_mask = df_display["Label"].duplicated(keep=False)
     df_display.loc[dup_mask, "Label"] = (
         df_display.loc[dup_mask, "Label"] + " (" + df_display.loc[dup_mask, "Card ID"] + ")"
     )
-    df_display.index += 1
 
-    col_chart, col_table = st.columns([1.4, 1])
+    # ── Charts ────────────────────────────────────────────────────────────────
+    def placement_bucket(p: str) -> str | None:
+        if p == "1st":                                                         return "1st"
+        if p in ("2nd", "3rd", "4th", "Top 4"):                               return "Top 4"
+        if p in ("5th", "6th", "7th", "8th", "Top 8"):                        return "Top 8"
+        if p in ("9th","10th","11th","12th","13th","14th","15th","16th","Top 16"): return "Top 16"
+        return None
 
-    SIGNAL_COLORS = {"++": "#2ecc71", "+": "#a8d8a8", "-": "#f4a460", "--": "#e74c3c"}
+    BUCKET_ORDER = ["1st", "Top 4", "Top 8", "Top 16"]
 
-    with col_chart:
+    col_l, col_r = st.columns(2)
+
+    with col_l:
+        st.subheader("Placement Distribution")
+        st.caption("Large Official Events only")
+        all_major_events = sorted(
+            {(d["event"], d["date"]) for d in raw if d.get("event_type") == "Large Official Event"},
+            key=lambda x: x[1],
+        )
+        ev_labels = {f"{date} — {event}": event for event, date in all_major_events}
+        sel_ev_labels = st.multiselect(
+            "Events to include",
+            options=list(ev_labels.keys()),
+            default=list(ev_labels.keys()),
+            key="placement_events",
+        )
+        sel_events = {ev_labels[l] for l in sel_ev_labels}
+        major_decks = [
+            d for d in scoped_decks
+            if d.get("event_type") == "Large Official Event"
+            and (not sel_events or d.get("event") in sel_events)
+        ]
+        place_counts = {b: 0 for b in BUCKET_ORDER}
+        for deck in major_decks:
+            bucket = placement_bucket(deck.get("placing_clean") or deck.get("placing", ""))
+            if bucket:
+                place_counts[bucket] += 1
+        fig_place = px.bar(
+            pd.DataFrame([{"Placement": b, "Count": place_counts[b]} for b in BUCKET_ORDER]),
+            x="Placement", y="Count",
+            color="Count", color_continuous_scale="Teal", text="Count",
+        )
+        fig_place.update_traces(textposition="outside")
+        fig_place.update_layout(coloraxis_showscale=False, margin=dict(t=10, b=60))
+        st.plotly_chart(fig_place, use_container_width=True)
+
+    with col_r:
         st.subheader(f"Top {top_n} Cards by {sort_by}")
-        fig = px.bar(
-            df_display,
-            x="Label",
-            y=sort_by,
-            color="Signal",
-            color_discrete_map=SIGNAL_COLORS,
-            text=sort_by,
-            category_orders={"Signal": ["++", "+", "-", "--"]},
+        fig_cards = px.bar(
+            df_display, x="Label", y=sort_by,
+            color="Signal", color_discrete_map=SIGNAL_COLORS,
+            text=sort_by, category_orders={"Signal": ["++", "+", "-", "--"]},
         )
-        fig.update_traces(textposition="outside", texttemplate="%{text}")
-        fig.update_layout(
-            xaxis_tickangle=-45,
-            margin=dict(t=20, b=120),
-            yaxis_title=sort_by,
-            legend_title="Signal",
+        fig_cards.update_traces(textposition="outside", texttemplate="%{text}")
+        fig_cards.update_layout(
+            xaxis_tickangle=-45, margin=dict(t=20, b=120),
+            yaxis_title=sort_by, legend_title="Signal",
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig_cards, use_container_width=True)
 
-    with col_table:
-        st.subheader("Card Table")
-        table_df = df_display[["Card ID", "Signal", "Decks", "Appearance %", "Weighted Score", "Score/Deck", "Avg Copies"]].copy()
-        table_df.insert(1, "Name",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("name", "—")))
-        table_df.insert(2, "Color", table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("color", "—")))
-        table_df.insert(3, "Type",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("cardType", "—")))
-        st.dataframe(table_df, use_container_width=True)
-
-    # Placement heatmap for top 20 cards
+    # ── Card Table ────────────────────────────────────────────────────────────
     st.divider()
-    st.subheader("Placement Breakdown — Top 20 Cards")
-    placements = ["1st", "2nd", "3rd", "Top 4", "Top 8", "Top 16", "Top 32"]
-    top20_ids = df.head(20)["Card ID"].tolist()
+    table_df = df_display[["Card ID", "Signal", "Decks", "Appearance %", "Weighted Score", "Score/Deck", "Avg Copies"]].copy()
+    table_df.insert(1, "Name",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("name", "—")))
+    table_df.insert(2, "Color", table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("color", "—")))
+    table_df.insert(3, "Type",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("cardType", "—")))
+    st.dataframe(table_df, use_container_width=True, hide_index=True)
 
-    heatmap_rows = []
-    seen_hm_labels: dict[str, int] = {}
-    for cid in top20_ids:
-        if cid not in cards_data:
-            continue
-        base = short_name(cid, card_names)
-        if base in seen_hm_labels:
-            label = f"{base} ({cid})"
-        else:
-            label = base
-        seen_hm_labels[base] = seen_hm_labels.get(base, 0) + 1
-        bp = cards_data[cid]["by_placement"]
-        row = {"Label": label}
-        for p in placements:
-            row[p] = bp.get(p, {}).get("decks", 0)
-        heatmap_rows.append(row)
-
-    hm_df = pd.DataFrame(heatmap_rows).set_index("Label")
-    hm_df = hm_df[[p for p in placements if p in hm_df.columns]]
-
-    fig_hm = px.imshow(
-        hm_df,
-        color_continuous_scale="Blues",
-        aspect="auto",
-        labels=dict(color="Decks"),
-        text_auto=True,
-    )
-    fig_hm.update_layout(margin=dict(t=10, b=10))
-    st.plotly_chart(fig_hm, use_container_width=True)
-
-    # Card Image Grid
+    # ── Card Image Grid ───────────────────────────────────────────────────────
     st.divider()
     st.subheader("Card Image Grid")
-
     gc1, _ = st.columns([1, 4])
     with gc1:
         page_size = st.selectbox("Cards per page", [10, 20, 30, 50], index=1, key="grid_page_size")
 
-    grid_df = df.sort_values(sort_by, ascending=False).reset_index(drop=True)
+    grid_df = filtered_df.sort_values(sort_by, ascending=False).reset_index(drop=True)
     total_cards = len(grid_df)
     total_pages = max(1, (total_cards + page_size - 1) // page_size)
 
-    state_key = f"{sort_by}|{page_size}|{total_cards}"
+    state_key = f"{selected_combo}|{sort_by}|{page_size}|{total_cards}"
     if st.session_state.get("_grid_state_key") != state_key:
         st.session_state["_grid_state_key"] = state_key
         st.session_state["card_grid_page"] = 1
-
     current_page = max(1, min(st.session_state.get("card_grid_page", 1), total_pages))
 
     pn1, pn2, pn3 = st.columns([1, 2, 1])
@@ -580,9 +601,7 @@ elif page == "Card Stats":
             st.rerun()
     with pn2:
         st.markdown(
-            f"<p style='text-align:center;margin:0.5rem 0'>"
-            f"Page {current_page} of {total_pages} &nbsp;·&nbsp; {total_cards} cards"
-            f"</p>",
+            f"<p style='text-align:center;margin:0.5rem 0'>Page {current_page} of {total_pages} · {total_cards} cards</p>",
             unsafe_allow_html=True,
         )
     with pn3:
@@ -590,19 +609,15 @@ elif page == "Card Stats":
             st.session_state["card_grid_page"] = current_page + 1
             st.rerun()
 
-    start = (current_page - 1) * page_size
-    end = min(start + page_size, total_cards)
-    page_df = grid_df.iloc[start:end]
-
+    page_df = grid_df.iloc[(current_page - 1) * page_size : current_page * page_size]
     COLS = 5
     for row_start in range(0, len(page_df), COLS):
         row_slice = page_df.iloc[row_start:row_start + COLS]
-        cols = st.columns(COLS)
+        img_cols = st.columns(COLS)
         for col_idx, (_, card_row) in enumerate(row_slice.iterrows()):
-            with cols[col_idx]:
+            with img_cols[col_idx]:
                 cid = card_row["Card ID"]
-                name_info = card_names.get(cid, {})
-                name = name_info.get("name") or cid
+                name = card_names.get(cid, {}).get("name") or cid
                 st.image(card_image(cid), use_container_width=True)
                 st.markdown(f"**{name}**  \n`{cid}`")
                 st.markdown(
@@ -610,167 +625,25 @@ elif page == "Card Stats":
                     f"Avg: **{card_row['Avg Copies']}** &nbsp; Score: **{card_row['Weighted Score']}**"
                 )
 
-
-# ══════════════════════════════════════════════════════════════════════════════
-# PAGE 3 — ARCHETYPE DEEP DIVE
-# ══════════════════════════════════════════════════════════════════════════════
-
-elif page == "Archetype Deep Dive":
-    st.header("Archetype Deep Dive")
-
-    # Event selector — Large Official Events sorted by date
-    all_major_events = sorted(
-        {(d["event"], d["date"]) for d in raw if d.get("event_type") == "Large Official Event"},
-        key=lambda x: x[1],
-    )
-    event_labels = {f"{date} — {event}": event for event, date in all_major_events}
-    selected_event_labels = st.multiselect(
-        "Filter by event",
-        options=list(event_labels.keys()),
-        default=list(event_labels.keys()),
-    )
-    selected_events = {event_labels[l] for l in selected_event_labels}
-
-    # Build color combo map for every raw deck
-    deck_combos = [(deck, deck_color_combo(deck, card_names)) for deck in raw]
-    combo_deck_counts = {}
-    for _, combo in deck_combos:
-        combo_deck_counts[combo] = combo_deck_counts.get(combo, 0) + 1
-    color_combos = sorted(combo_deck_counts, key=lambda c: -combo_deck_counts[c])
-
-    selected_combo = st.selectbox("Select color combination", color_combos)
-
-    arch_decks = [deck for deck, combo in deck_combos if combo == selected_combo]
-    total_decks = len(arch_decks)
-
-    PLACEMENT_POINTS = {"1st": 7, "2nd": 6, "3rd": 5, "Top 4": 4, "Top 8": 3, "Top 16": 2, "Top 32": 1}
-    top3 = sum(1 for d in arch_decks if (d.get("placing_clean") or d.get("placing", "")) in ("1st", "2nd", "3rd"))
-    meta_share = total_decks / meta["total_decks"] * 100 if meta["total_decks"] else 0
-
-    m1, m2, m3, m4 = st.columns(4)
-    m1.metric("Total Decks", total_decks)
-    m2.metric("Meta Share", f"{meta_share:.1f}%")
-    m3.metric("Top-3 Finishes", top3)
-    conv = top3 / total_decks * 100 if total_decks else 0
-    m4.metric("Top-3 Rate", f"{conv:.1f}%")
-
-    st.divider()
-    col_l, col_r = st.columns(2)
-
-    # Placement distribution (Large Official Events only)
-    def placement_bucket(p: str) -> str | None:
-        if p in ("1st",):
-            return "1st"
-        if p in ("2nd", "3rd", "4th", "Top 4"):
-            return "Top 4"
-        if p in ("5th", "6th", "7th", "8th", "Top 8"):
-            return "Top 8"
-        if p in ("9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "Top 16"):
-            return "Top 16"
-        return None
-
-    BUCKET_ORDER = ["1st", "Top 4", "Top 8", "Top 16"]
-
-    with col_l:
-        st.subheader("Placement Distribution")
-        st.caption("Large Official Events only")
-        major_decks = [
-            d for d in arch_decks
-            if d.get("event_type") == "Large Official Event"
-            and (not selected_events or d.get("event") in selected_events)
-        ]
-        place_counts: dict[str, int] = {b: 0 for b in BUCKET_ORDER}
-        for deck in major_decks:
-            p = deck.get("placing_clean") or deck.get("placing", "")
-            bucket = placement_bucket(p)
-            if bucket:
-                place_counts[bucket] += 1
-        place_df = pd.DataFrame(
-            [{"Placement": b, "Count": place_counts[b]} for b in BUCKET_ORDER]
-        )
-        fig = px.bar(
-            place_df, x="Placement", y="Count",
-            color="Count", color_continuous_scale="Teal",
-            text="Count",
-        )
-        fig.update_traces(textposition="outside")
-        fig.update_layout(coloraxis_showscale=False, margin=dict(t=10, b=60))
-        st.plotly_chart(fig, use_container_width=True)
-
-    # Top 20 cards by weighted score within this color combo
-    with col_r:
-        st.subheader("Top Cards by Weighted Score")
-        card_counter: dict[str, dict] = {}
-        pts_map = {"1st": 7, "2nd": 6, "3rd": 5, "Top 4": 4, "Top 8": 3, "Top 16": 2, "Top 32": 1}
-        for deck in arch_decks:
-            p = deck.get("placing_clean") or deck.get("placing", "")
-            score = pts_map.get(p, 0)
-            for card in deck["cards"]:
-                cid = card["card_id"]
-                if cid not in card_counter:
-                    card_counter[cid] = {"count": 0, "total": 0, "score": 0}
-                card_counter[cid]["count"] += 1
-                card_counter[cid]["total"] += card["quantity"]
-                card_counter[cid]["score"] += score
-
-        total_arch_decks = len(arch_decks) or 1
-        arch_card_df = pd.DataFrame([
-            {
-                "Card ID": cid,
-                "Label": short_name(cid, card_names),
-                "Name": card_names.get(cid, {}).get("name", "—"),
-                "Color": card_names.get(cid, {}).get("color", "—"),
-                "Decks": v["count"],
-                "Inclusion %": round(v["count"] / total_arch_decks * 100, 1),
-                "Weighted Score": v["score"],
-                "Avg Copies": round(v["total"] / v["count"], 2),
-            }
-            for cid, v in card_counter.items()
-        ]).sort_values("Weighted Score", ascending=False).head(20).reset_index(drop=True)
-
-        # Deduplicate labels
-        dup_labels = arch_card_df["Label"].duplicated(keep=False)
-        arch_card_df.loc[dup_labels, "Label"] = (
-            arch_card_df.loc[dup_labels, "Label"] + " ("
-            + arch_card_df.loc[dup_labels, "Card ID"] + ")"
-        )
-        arch_card_df.index += 1
-
-        fig2 = px.bar(
-            arch_card_df.head(20), x="Label", y="Weighted Score",
-            color="Weighted Score", color_continuous_scale="Blues",
-            text="Weighted Score",
-        )
-        fig2.update_traces(textposition="outside", texttemplate="%{text}")
-        fig2.update_layout(
-            xaxis_tickangle=-45,
-            coloraxis_showscale=False,
-            margin=dict(t=10, b=100),
-        )
-        st.plotly_chart(fig2, use_container_width=True)
-
-    st.subheader("Card Detail Table")
-    st.dataframe(arch_card_df, use_container_width=True)
-
-    # Sample deck lists
-    st.divider()
-    st.subheader("Sample Deck Lists")
-    sample = sorted(arch_decks, key=lambda d: d.get("placing_rank", 99))[:5]
-    for deck in sample:
-        label = f"{deck['placing']} — {deck['player']} | {deck['event']} | {deck['date']}"
-        with st.expander(label):
-            if deck["cards"]:
-                if deck["deck_url"]:
-                    st.markdown(f"[View on Deckbuilder]({deck['deck_url']})")
-                # Display cards as image grid
-                cols = st.columns(8)
-                for idx, card in enumerate(deck["cards"]):
-                    with cols[idx % 8]:
-                        name = card_names.get(card["card_id"], {}).get("name", card["card_id"])
-                        st.image(
-                            card_image(card["card_id"]),
-                            caption=f"{name} x{card['quantity']}",
-                            use_container_width=True,
-                        )
-            else:
-                st.write("No card data available.")
+    # ── Sample Deck Lists (only when a combo is selected) ─────────────────────
+    if selected_combo != "All":
+        st.divider()
+        st.subheader("Sample Deck Lists")
+        sample = sorted(scoped_decks, key=lambda d: d.get("placing_rank", 99))[:5]
+        for deck in sample:
+            label = f"{deck['placing']} — {deck['player']} | {deck['event']} | {deck['date']}"
+            with st.expander(label):
+                if deck["cards"]:
+                    if deck["deck_url"]:
+                        st.markdown(f"[View on Deckbuilder]({deck['deck_url']})")
+                    deck_cols = st.columns(8)
+                    for idx, card in enumerate(deck["cards"]):
+                        with deck_cols[idx % 8]:
+                            name = card_names.get(card["card_id"], {}).get("name", card["card_id"])
+                            st.image(
+                                card_image(card["card_id"]),
+                                caption=f"{name} x{card['quantity']}",
+                                use_container_width=True,
+                            )
+                else:
+                    st.write("No card data available.")
