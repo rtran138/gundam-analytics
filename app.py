@@ -393,6 +393,11 @@ elif page == "Card Stats":
         event_types = sorted({d["event_type"] for d in raw if d["event_type"]})
         selected_events = st.multiselect("Filter by event type", event_types, default=event_types)
 
+    hide_staples = st.toggle(
+        "Hide staples (avg ≥ 3.5 copies) — show impactful tech cards",
+        value=False,
+    )
+
     # Re-compute if event filter is active
     if set(selected_events) != set(event_types):
         filtered_raw = [d for d in raw if d["event_type"] in selected_events]
@@ -423,7 +428,8 @@ elif page == "Card Stats":
     else:
         df = cards_df()
 
-    df_display = df.sort_values(sort_by, ascending=False).head(top_n).reset_index(drop=True)
+    filtered_df = df[df["Avg Copies"] < 3.5] if hide_staples else df
+    df_display = filtered_df.sort_values(sort_by, ascending=False).head(top_n).reset_index(drop=True)
     df_display["Label"] = df_display["Card ID"].apply(lambda cid: short_name(cid, card_names))
     dup_mask = df_display["Label"].duplicated(keep=False)
     df_display.loc[dup_mask, "Label"] = (
