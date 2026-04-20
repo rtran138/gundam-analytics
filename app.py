@@ -24,6 +24,14 @@ def card_image(card_id: str) -> str | Path:
 
 ARCH_LR_FILE     = Path("assets/archetype_lr_cards.json")
 ARCH_GROUPS_FILE = Path("assets/archetype_groups.json")
+CARD_ALIASES_FILE = Path("assets/card_aliases.json")
+
+
+@st.cache_data
+def load_card_aliases() -> dict:
+    if CARD_ALIASES_FILE.exists():
+        return json.loads(CARD_ALIASES_FILE.read_text(encoding="utf-8"))
+    return {}
 
 @st.cache_data
 def load_card_names() -> dict:
@@ -184,6 +192,7 @@ raw, analyzed = load_data()
 card_names = load_card_names()
 arch_lr_cards = load_arch_lr_cards()
 arch_groups = load_arch_groups()
+card_aliases = load_card_aliases()
 meta = analyzed["meta"]
 cards_data = analyzed["cards"]
 arch_data = analyzed["archetypes"]
@@ -191,6 +200,13 @@ raw_df = pd.DataFrame(raw)
 
 grouped_arch = apply_arch_groups(arch_data, arch_groups)
 member_to_group = {m: g for g, members in arch_groups.items() for m in members}
+
+# Build merged display names for aliased cards (e.g. "Hyakuren / ReZEL")
+alias_display_names = {}
+for alias_id, canonical_id in card_aliases.items():
+    canonical_name = card_names.get(canonical_id, {}).get("name", canonical_id)
+    alias_name = card_names.get(alias_id, {}).get("name", alias_id)
+    alias_display_names[canonical_id] = f"{canonical_name} / {alias_name}"
 
 # ── Helper: build cards DataFrame ─────────────────────────────────────────────
 
@@ -546,7 +562,7 @@ elif page == "Card Analysis":
         p = deck.get("placing_clean") or deck.get("placing", "")
         score = PTS_MAP.get(p, 0)
         for card in deck["cards"]:
-            cid = card["card_id"]
+            cid = card_aliases.get(card["card_id"], card["card_id"])  # resolve alias
             if cid not in card_counter:
                 card_counter[cid] = {"count": 0, "total": 0, "score": 0}
             card_counter[cid]["count"] += 1
@@ -562,7 +578,7 @@ elif page == "Card Analysis":
     card_deck_ids: dict[str, set] = {}
     for deck in scoped_decks:
         for card in deck["cards"]:
-            cid = card["card_id"]
+            cid = card_aliases.get(card["card_id"], card["card_id"])
             if cid not in card_deck_ids:
                 card_deck_ids[cid] = set()
             card_deck_ids[cid].add(id(deck))
@@ -611,7 +627,11 @@ elif page == "Card Analysis":
         if delta >= -2:  return "-"
         return "--"
     df_display["Signal"] = df_display["Rank Δ"].apply(placement_signal)
-    df_display["Label"] = df_display["Card ID"].apply(lambda cid: short_name(cid, card_names))
+    df_display["Label"] = df_display["Card ID"].apply(
+        lambda cid: short_name(cid, card_names, max_len=20)
+        if cid not in alias_display_names
+        else alias_display_names[cid][:20]
+    )
     dup_mask = df_display["Label"].duplicated(keep=False)
     df_display.loc[dup_mask, "Label"] = (
         df_display.loc[dup_mask, "Label"] + " (" + df_display.loc[dup_mask, "Card ID"] + ")"
@@ -680,7 +700,7 @@ elif page == "Card Analysis":
     # ── Card Table ────────────────────────────────────────────────────────────
     st.divider()
     table_df = df_display[["Card ID", "Signal", "Rank Δ", "Decks", "Appearance %", "Weighted Score", "Avg Copies"]].copy()
-    table_df.insert(1, "Name",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("name", "—")))
+    table_df.insert(1, "Name",  table_df["Card ID"].apply(lambda cid: alias_display_names.get(cid) or card_names.get(cid, {}).get("name", "—")))
     table_df.insert(2, "Color", table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("color", "—")))
     table_df.insert(3, "Type",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("cardType", "—")))
     st.dataframe(table_df, use_container_width=True, hide_index=True)
