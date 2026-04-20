@@ -466,6 +466,19 @@ elif page == "Card Stats":
     if hide_staples:
         filtered_df = filtered_df[filtered_df["Avg Copies"] < 3.5]
     df_display = filtered_df.sort_values(sort_by, ascending=False).head(top_n).reset_index(drop=True)
+
+    # Placement signal: score-per-deck compared to quartiles of the displayed set
+    df_display["Score/Deck"] = (df_display["Weighted Score"] / df_display["Decks"].clip(lower=1)).round(2)
+    q25 = df_display["Score/Deck"].quantile(0.25)
+    q75 = df_display["Score/Deck"].quantile(0.75)
+    median = df_display["Score/Deck"].median()
+    def placement_signal(spd: float) -> str:
+        if spd >= q75:   return "++"
+        if spd >= median: return "+"
+        if spd >= q25:   return "-"
+        return "--"
+    df_display["Signal"] = df_display["Score/Deck"].apply(placement_signal)
+
     df_display["Label"] = df_display["Card ID"].apply(lambda cid: short_name(cid, card_names))
     dup_mask = df_display["Label"].duplicated(keep=False)
     df_display.loc[dup_mask, "Label"] = (
@@ -475,31 +488,34 @@ elif page == "Card Stats":
 
     col_chart, col_table = st.columns([1.4, 1])
 
+    SIGNAL_COLORS = {"++": "#2ecc71", "+": "#a8d8a8", "-": "#f4a460", "--": "#e74c3c"}
+
     with col_chart:
         st.subheader(f"Top {top_n} Cards by {sort_by}")
         fig = px.bar(
             df_display,
             x="Label",
             y=sort_by,
-            color=sort_by,
-            color_continuous_scale="Blues",
+            color="Signal",
+            color_discrete_map=SIGNAL_COLORS,
             text=sort_by,
+            category_orders={"Signal": ["++", "+", "-", "--"]},
         )
         fig.update_traces(textposition="outside", texttemplate="%{text}")
         fig.update_layout(
             xaxis_tickangle=-45,
-            coloraxis_showscale=False,
             margin=dict(t=20, b=120),
             yaxis_title=sort_by,
+            legend_title="Signal",
         )
         st.plotly_chart(fig, use_container_width=True)
 
     with col_table:
         st.subheader("Card Table")
-        table_df = df_display[["Card ID", "Decks", "Appearance %", "Weighted Score", "Avg Copies"]].copy()
-        table_df.insert(1, "Name",   table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("name", "—")))
-        table_df.insert(2, "Color",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("color", "—")))
-        table_df.insert(3, "Type",   table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("cardType", "—")))
+        table_df = df_display[["Card ID", "Signal", "Decks", "Appearance %", "Weighted Score", "Score/Deck", "Avg Copies"]].copy()
+        table_df.insert(1, "Name",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("name", "—")))
+        table_df.insert(2, "Color", table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("color", "—")))
+        table_df.insert(3, "Type",  table_df["Card ID"].apply(lambda cid: card_names.get(cid, {}).get("cardType", "—")))
         st.dataframe(table_df, use_container_width=True)
 
     # Placement heatmap for top 20 cards
